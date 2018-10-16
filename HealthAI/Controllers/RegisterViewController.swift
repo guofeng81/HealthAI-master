@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class RegisterViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: UIButton) {
         
+        SVProgressHUD.show()
+        
         if let email = emailTextField.text, let password = passwordTextField.text, (email.count > 0 && password.count > 0) {
             
             AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
@@ -29,7 +32,7 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 self.performSegue(withIdentifier: "goToHealthMain", sender: self)
-                
+                SVProgressHUD.dismiss()
             }
             
         }else{

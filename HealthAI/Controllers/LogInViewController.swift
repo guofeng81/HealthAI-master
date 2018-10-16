@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class LogInViewController: UIViewController {
     
@@ -20,14 +21,17 @@ class LogInViewController: UIViewController {
     
     @IBAction func loginPressed(_ sender: UIButton) {
         
+        SVProgressHUD.show()
+        
         if let email = emailText.text, let password = passwordText.text, (email.count > 0 && password.count > 0) {
-            
             AuthServices.instance.login(email: email, password: password) { (errMsg, data) in
                 guard errMsg == nil else {
                     self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
                     return
                 }
+                
                  self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                SVProgressHUD.dismiss()
                 
             }
         }else{
