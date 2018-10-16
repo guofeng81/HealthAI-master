@@ -26,6 +26,7 @@ class LogInViewController: UIViewController {
         if let email = emailText.text, let password = passwordText.text, (email.count > 0 && password.count > 0) {
             AuthServices.instance.login(email: email, password: password) { (errMsg, data) in
                 guard errMsg == nil else {
+                    SVProgressHUD.dismiss()
                     self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
                     return
                 }

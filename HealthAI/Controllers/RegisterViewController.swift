@@ -28,6 +28,7 @@ class RegisterViewController: UIViewController {
             
             AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
                 guard errMsg == nil else {
+                    SVProgressHUD.dismiss()
                     self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
                     return
                 }

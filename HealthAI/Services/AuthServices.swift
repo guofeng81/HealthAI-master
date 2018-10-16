@@ -20,7 +20,6 @@ class AuthServices{
         return _instance
     }
     
-    
     func login(email:String, password:String, onComplete: Completion?){
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -34,11 +33,9 @@ class AuthServices{
         }
     }
     
-    
     func signup(email:String, password:String, onComplete:Completion?){
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             }else{
@@ -58,11 +55,17 @@ class AuthServices{
             case .weakPassword:
                 onComplete?("The password is weak, please try some strong password.", nil)
                 break
+            case .emailAlreadyInUse:
+                onComplete?("The email address has already been used, please try other email address.", nil)
+                break
             case .credentialAlreadyInUse:
                 onComplete?("The email address has already exist in the system, please use other email address to sign up.",nil)
                 break
             case .sessionExpired:
                 onComplete?("The seesion has been expired, please try again.",nil)
+                break
+            case .wrongPassword:
+                onComplete?("The password is invalid or the user does not have a password.",nil)
                 break
             default:
                 onComplete?("There is a problem authenticating, please try again.", nil)
