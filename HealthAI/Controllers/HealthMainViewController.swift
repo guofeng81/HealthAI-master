@@ -13,6 +13,11 @@ class HealthMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        guard Auth.auth().currentUser != nil else {
+//            performSegue(withIdentifier: "goToHealthMain", sender: nil)
+//            return
+//        }
     }
 
 }
