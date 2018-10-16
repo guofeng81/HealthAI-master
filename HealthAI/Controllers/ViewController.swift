@@ -15,11 +15,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func registerBtnPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToRegister", sender: self)
     }
-
-
+    
+    
+    @IBAction func loginBtnPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToLogin", sender: self)
+        
+    }
+    
+    
 }
 

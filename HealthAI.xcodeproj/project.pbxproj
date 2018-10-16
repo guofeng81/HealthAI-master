@@ -12,9 +12,16 @@
 		6455C8E921642E36009F4D33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6455C8E721642E36009F4D33 /* Main.storyboard */; };
 		6455C8EB21642E38009F4D33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6455C8EA21642E38009F4D33 /* Assets.xcassets */; };
 		6455C8EE21642E38009F4D33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6455C8EC21642E38009F4D33 /* LaunchScreen.storyboard */; };
+		B30E61BF21754163004135B9 /* HealthMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E61BE21754163004135B9 /* HealthMainViewController.swift */; };
+		B30E61C121754302004135B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B30E61C021754302004135B9 /* GoogleService-Info.plist */; };
+		B3428D1221753944000BEFAE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3428D1121753944000BEFAE /* LogInViewController.swift */; };
+		B3428D1421753957000BEFAE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3428D1321753957000BEFAE /* RegisterViewController.swift */; };
+		FE70AD21C410493CA553750D /* Pods_HealthAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4E58E5D376F852DBDD912E /* Pods_HealthAI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B4E58E5D376F852DBDD912E /* Pods_HealthAI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthAI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4291960B56D9C7369D8A7E22 /* Pods-HealthAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthAI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI.debug.xcconfig"; sourceTree = "<group>"; };
 		6455C8E021642E36009F4D33 /* HealthAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6455C8E321642E36009F4D33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6455C8E521642E36009F4D33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +29,11 @@
 		6455C8EA21642E38009F4D33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6455C8ED21642E38009F4D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6455C8EF21642E38009F4D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B30E61BE21754163004135B9 /* HealthMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMainViewController.swift; sourceTree = "<group>"; };
+		B30E61C021754302004135B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B3428D1121753944000BEFAE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		B3428D1321753957000BEFAE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E40F50F27A038588BD108CD7 /* Pods-HealthAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthAI.release.xcconfig"; path = "Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE70AD21C410493CA553750D /* Pods_HealthAI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29C97F08B9B371C43A3724E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4291960B56D9C7369D8A7E22 /* Pods-HealthAI.debug.xcconfig */,
+				E40F50F27A038588BD108CD7 /* Pods-HealthAI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6455C8D721642E35009F4D33 = {
 			isa = PBXGroup;
 			children = (
 				6455C8E221642E36009F4D33 /* HealthAI */,
 				6455C8E121642E36009F4D33 /* Products */,
+				29C97F08B9B371C43A3724E8 /* Pods */,
+				79DCDDC56B4C301F02196E04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +79,33 @@
 			isa = PBXGroup;
 			children = (
 				6455C8E321642E36009F4D33 /* AppDelegate.swift */,
-				6455C8E521642E36009F4D33 /* ViewController.swift */,
+				B30E61C221756C66004135B9 /* Controllers */,
 				6455C8E721642E36009F4D33 /* Main.storyboard */,
 				6455C8EA21642E38009F4D33 /* Assets.xcassets */,
 				6455C8EC21642E38009F4D33 /* LaunchScreen.storyboard */,
 				6455C8EF21642E38009F4D33 /* Info.plist */,
+				B30E61C021754302004135B9 /* GoogleService-Info.plist */,
+				B30E61BE21754163004135B9 /* HealthMainViewController.swift */,
 			);
 			path = HealthAI;
+			sourceTree = "<group>";
+		};
+		79DCDDC56B4C301F02196E04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B4E58E5D376F852DBDD912E /* Pods_HealthAI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B30E61C221756C66004135B9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6455C8E521642E36009F4D33 /* ViewController.swift */,
+				B3428D1121753944000BEFAE /* LogInViewController.swift */,
+				B3428D1321753957000BEFAE /* RegisterViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6455C8F221642E38009F4D33 /* Build configuration list for PBXNativeTarget "HealthAI" */;
 			buildPhases = (
+				8C8640E2B29B3930E1ED6BAE /* [CP] Check Pods Manifest.lock */,
 				6455C8DC21642E36009F4D33 /* Sources */,
 				6455C8DD21642E36009F4D33 /* Frameworks */,
 				6455C8DE21642E36009F4D33 /* Resources */,
+				DF11D205997539BD8585174B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,6 +142,7 @@
 				TargetAttributes = {
 					6455C8DF21642E36009F4D33 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -123,12 +170,64 @@
 			buildActionMask = 2147483647;
 			files = (
 				6455C8EE21642E38009F4D33 /* LaunchScreen.storyboard in Resources */,
+				B30E61C121754302004135B9 /* GoogleService-Info.plist in Resources */,
 				6455C8EB21642E38009F4D33 /* Assets.xcassets in Resources */,
 				6455C8E921642E36009F4D33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C8640E2B29B3930E1ED6BAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HealthAI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF11D205997539BD8585174B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6455C8DC21642E36009F4D33 /* Sources */ = {
@@ -137,6 +236,9 @@
 			files = (
 				6455C8E621642E36009F4D33 /* ViewController.swift in Sources */,
 				6455C8E421642E36009F4D33 /* AppDelegate.swift in Sources */,
+				B30E61BF21754163004135B9 /* HealthMainViewController.swift in Sources */,
+				B3428D1221753944000BEFAE /* LogInViewController.swift in Sources */,
+				B3428D1421753957000BEFAE /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +380,7 @@
 		};
 		6455C8F321642E38009F4D33 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4291960B56D9C7369D8A7E22 /* Pods-HealthAI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -288,13 +391,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ubicomp.HealthAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6455C8F421642E38009F4D33 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E40F50F27A038588BD108CD7 /* Pods-HealthAI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -305,7 +409,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ubicomp.HealthAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
