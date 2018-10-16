@@ -12,7 +12,6 @@ import FirebaseAuth
 
 typealias Completion = (_ errMsg: String?,_ data: AnyObject?) -> Void
 
-
 class AuthServices{
     
     private static let _instance = AuthServices()
@@ -29,23 +28,26 @@ class AuthServices{
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             }else{
+                onComplete?(nil,result?.user)
                 print("Successfully Log In!!")
             }
         }
     }
     
+    
     func signup(email:String, password:String, onComplete:Completion?){
         
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             }else{
+                onComplete?(nil,result?.user)
                 print("Successfully Sign up!!")
             }
         }
     }
-        
+    
     func handleFirebaseError(error: NSError, onComplete: Completion?){
         print(error.debugDescription)
         if let errorCode = AuthErrorCode(rawValue: error._code) {
@@ -61,20 +63,13 @@ class AuthServices{
                 break
             case .sessionExpired:
                 onComplete?("The seesion has been expired, please try again.",nil)
-            break
+                break
             default:
                 onComplete?("There is a problem authenticating, please try again.", nil)
             }
         }
         
-        
-        
     }
-    
-    
-    
-    
-    
     
     
 }

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,27 +23,24 @@ class RegisterViewController: UIViewController {
         
         if let email = emailTextField.text, let password = passwordTextField.text, (email.count > 0 && password.count > 0) {
             
-            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
-                
-                if error != nil {
-                    
-                    print("Error in creating new user, \(String(describing: error))")
-                    
-                }else{
-                    
-                    self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+            AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
+                guard errMsg == nil else {
+                    self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
+                    return
                 }
+                self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                
             }
             
         }else{
-            let alert = UIAlertController(title: "Username and Password Required", message: "You must enter both username and password", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-            
+            createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
         }
-        
     }
     
-    
+    func createAlert(controllertitle: String,message: String,actionTitle: String){
+        let alert = UIAlertController(title: controllertitle, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
     
 }
