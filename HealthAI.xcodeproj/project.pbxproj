@@ -80,8 +80,8 @@
 		6455C8E221642E36009F4D33 /* HealthAI */ = {
 			isa = PBXGroup;
 			children = (
-				B30E61C521756EF0004135B9 /* Services */,
 				6455C8E321642E36009F4D33 /* AppDelegate.swift */,
+				B30E61C521756EF0004135B9 /* Services */,
 				B30E61C221756C66004135B9 /* Controllers */,
 				B30E61C621756EFC004135B9 /* Views */,
 				6455C8EA21642E38009F4D33 /* Assets.xcassets */,

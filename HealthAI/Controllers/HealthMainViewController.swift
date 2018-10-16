@@ -8,16 +8,30 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class HealthMainViewController: UIViewController {
+class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
+    
+    let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
+    let APP_ID = "e72ca729af228beabd5d20e3b7749713"
+    
 
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        guard Auth.auth().currentUser != nil else {
-//            performSegue(withIdentifier: "goToHealthMain", sender: nil)
-//            return
-//        }
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        
+        if let user =  Auth.auth().currentUser {
+            print(user.email ?? "No email address!")
+            print(user.uid)
+        }
+        
+        
+        
     }
 
 }
