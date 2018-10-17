@@ -276,6 +276,34 @@
                                 </constraints>
                                 <state key="normal" title="Diabetes Predictor"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF0-5f-FQ5">
+                                <rect key="frame" x="217" y="243.5" width="158" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="IiN-Mu-YFW"/>
+                                    <constraint firstAttribute="height" constant="20.5" id="Ila-lz-MBJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-NY-xpQ">
+                                <rect key="frame" x="305" y="64" width="70" height="96.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-kF-Hto">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMj-oX-Ya5">
+                                        <rect key="frame" x="0.0" y="71" width="70" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96.5" id="Wjf-vX-ikW"/>
+                                    <constraint firstAttribute="width" constant="70" id="yJv-pj-lKK"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -284,16 +312,25 @@
                             <constraint firstItem="Qwz-mU-Mc2" firstAttribute="top" secondItem="RzF-ND-0UB" secondAttribute="bottom" constant="20" id="9TT-e1-Jgh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qwz-mU-Mc2" secondAttribute="trailing" constant="16" id="Brv-vs-cny"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IWi-UM-lId" secondAttribute="trailing" constant="16" id="Cwd-IL-oV8"/>
+                            <constraint firstItem="dXe-NY-xpQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LqW-qy-1ML"/>
+                            <constraint firstItem="MF0-5f-FQ5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MZl-PD-shU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NWc-RG-5Hc" secondAttribute="trailing" constant="16" id="QTI-4O-J5h"/>
                             <constraint firstItem="RzF-ND-0UB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QlR-Pw-Pcd"/>
                             <constraint firstItem="NWc-RG-5Hc" firstAttribute="top" secondItem="Qwz-mU-Mc2" secondAttribute="bottom" constant="20" id="TQ6-Bq-enb"/>
                             <constraint firstItem="RzF-ND-0UB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fGJ-dP-Q6J"/>
                             <constraint firstItem="NWc-RG-5Hc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faf-h6-Lbq"/>
+                            <constraint firstItem="Qwz-mU-Mc2" firstAttribute="top" secondItem="MF0-5f-FQ5" secondAttribute="bottom" constant="20" id="gy8-Dk-jdI"/>
                             <constraint firstItem="Qwz-mU-Mc2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="r3O-RO-Jn3"/>
+                            <constraint firstItem="dXe-NY-xpQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uJj-mg-rny"/>
                             <constraint firstItem="IWi-UM-lId" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yA4-9p-m8p"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="MF0-5f-FQ5" id="7tR-08-ERB"/>
+                        <outlet property="temperatureLabel" destination="mMj-oX-Ya5" id="ImM-8I-Zvg"/>
+                        <outlet property="weatherImage" destination="lyc-kF-Hto" id="Iqr-aH-MKt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
