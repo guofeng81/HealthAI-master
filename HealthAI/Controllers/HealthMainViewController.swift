@@ -18,8 +18,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    
-    
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "47aa6d0303fe5a8186915aa57b079446"
     
@@ -58,10 +56,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
             
             getWeatherData(url:WEATHER_URL,parameters: params)
             
-            
         }
-        
-        
     }
     
     func getWeatherData(url:String,parameters:[String:String]){
@@ -97,15 +92,15 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
         
     }
     
+    //MARK - Update the Weather UI
+    
     func updateUIWeatherData(weatherDataModel: WeatherDataModel){
     
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
         
-        
     }
-    
     
     //MARK - didFailWithError which tell when the location update is fail
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -113,7 +108,4 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
         cityLabel.text = "Location Unavailable"
     }
     
-    
-    
-
 }
