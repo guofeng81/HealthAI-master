@@ -38,6 +38,8 @@ class RegisterViewController: UIViewController {
             
         }else{
             createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
+            SVProgressHUD.dismiss()
+            
         }
     }
     

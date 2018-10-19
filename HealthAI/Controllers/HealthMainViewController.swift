@@ -14,9 +14,17 @@ import SwiftyJSON
 
 class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     
-    @IBOutlet weak var cityLabel: UILabel!
+//    @IBOutlet weak var cityLabel: UILabel!
+//    @IBOutlet weak var weatherImage: UIImageView!
+//    @IBOutlet weak var temperatureLabel: UILabel!
+    
     @IBOutlet weak var weatherImage: UIImageView!
+    
+    @IBOutlet weak var cityLabel: UILabel!
+    
     @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var conditionLabel: UILabel!
     
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "47aa6d0303fe5a8186915aa57b079446"
@@ -56,6 +64,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
             
             getWeatherData(url:WEATHER_URL,parameters: params)
             
+            
         }
     }
     
@@ -69,7 +78,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
                 print(weatherJSON)
                 self.updateWeatherData(json: weatherJSON)
                 
-               
                 
             }else{
                 print("Error, \(String(describing: response.result.error))")
@@ -85,7 +93,16 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
             weatherDataModel.city = json["name"].stringValue
             weatherDataModel.condition = json["weather"]["id"].intValue
             weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+            weatherDataModel.weatherCondition = json["weather"]["main"].stringValue
+            
             updateUIWeatherData(weatherDataModel: weatherDataModel)
+            
+            print(weatherDataModel.temperature)
+            print(weatherDataModel.city)
+            print(weatherDataModel.weatherIconName)
+            print(weatherDataModel.weatherCondition)
+            
+            
         }else{
             print("Weather Unavailable")
         }
@@ -99,6 +116,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
+        conditionLabel.text = weatherDataModel.weatherCondition
         
     }
     
