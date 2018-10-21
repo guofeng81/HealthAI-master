@@ -11,40 +11,51 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
     @IBOutlet weak var registerBtn: UIButton!
-    
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLoginView()
+    }
+
+    func setupLoginView(){
         registerBtn.layer.cornerRadius  = 4
         emailTextField.setPadding()
         emailTextField.underlined()
         passwordTextField.setPadding()
         passwordTextField.underlined()
-        
         loginBtn.layer.cornerRadius = 25.0
         loginBtn.clipsToBounds = true
-        
     }
-
+    
     @IBAction func registerBtnPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "goToRegister", sender: self)
     }
     
-    
     @IBAction func loginBtnPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToLogin", sender: self)
-        
+       
+        if let email = emailTextField.text, let password = passwordTextField.text, (email.count > 0 && password.count > 0) {
+            AuthServices.instance.login(email: email, password: password) { (errMsg, data) in
+                guard errMsg == nil else {
+                    self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
+                    return
+                }
+                self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+            }
+        }else{
+            createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
+        }
     }
     
+    func createAlert(controllertitle: String,message: String,actionTitle: String){
+        let alert = UIAlertController(title: controllertitle, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
-
 
 extension UITextField {
     func setPadding() {
@@ -61,18 +72,6 @@ extension UITextField {
         border.borderWidth = width
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
-    }
-}
-
-extension UIButton{
-    
-    func setupShadow(myBtn : UIButton){
-        myBtn.layer.shadowColor = UIColor.black.cgColor
-        myBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        myBtn.layer.masksToBounds = false
-        myBtn.layer.shadowRadius = 1.0
-        myBtn.layer.shadowOpacity = 0.5
-        myBtn.layer.cornerRadius = myBtn.frame.width / 2
     }
 }
 

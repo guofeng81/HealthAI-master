@@ -16,7 +16,6 @@
 		B30E61C121754302004135B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B30E61C021754302004135B9 /* GoogleService-Info.plist */; };
 		B30E61C421756EE5004135B9 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E61C321756EE5004135B9 /* AuthServices.swift */; };
 		B30E61C82176C373004135B9 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E61C72176C373004135B9 /* WeatherDataModel.swift */; };
-		B3428D1221753944000BEFAE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3428D1121753944000BEFAE /* LogInViewController.swift */; };
 		B3428D1421753957000BEFAE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3428D1321753957000BEFAE /* RegisterViewController.swift */; };
 		FE70AD21C410493CA553750D /* Pods_HealthAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4E58E5D376F852DBDD912E /* Pods_HealthAI.framework */; };
 /* End PBXBuildFile section */
@@ -35,7 +34,6 @@
 		B30E61C021754302004135B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B30E61C321756EE5004135B9 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		B30E61C72176C373004135B9 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
-		B3428D1121753944000BEFAE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		B3428D1321753957000BEFAE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E40F50F27A038588BD108CD7 /* Pods-HealthAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthAI.release.xcconfig"; path = "Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,7 +106,6 @@
 			children = (
 				B30E61BE21754163004135B9 /* HealthMainViewController.swift */,
 				6455C8E521642E36009F4D33 /* ViewController.swift */,
-				B3428D1121753944000BEFAE /* LogInViewController.swift */,
 				B3428D1321753957000BEFAE /* RegisterViewController.swift */,
 			);
 			path = Controllers;
@@ -275,7 +272,6 @@
 				B30E61C82176C373004135B9 /* WeatherDataModel.swift in Sources */,
 				B30E61BF21754163004135B9 /* HealthMainViewController.swift in Sources */,
 				B30E61C421756EE5004135B9 /* AuthServices.swift in Sources */,
-				B3428D1221753944000BEFAE /* LogInViewController.swift in Sources */,
 				B3428D1421753957000BEFAE /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
