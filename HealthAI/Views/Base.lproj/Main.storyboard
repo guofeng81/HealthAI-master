@@ -40,7 +40,7 @@
                                                                     <constraint firstAttribute="width" constant="52" id="rOH-Kj-4iO"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="H6E-bm-S0Y">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="H6E-bm-S0Y">
                                                                 <rect key="frame" x="72" y="0.0" width="258" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="258" id="G4w-oM-Y6Z"/>
@@ -62,7 +62,7 @@
                                                                     <constraint firstAttribute="width" constant="52" id="mwo-m8-TXT"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-w0-I3a">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-w0-I3a">
                                                                 <rect key="frame" x="72" y="0.0" width="258" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="Abx-5W-UTu"/>
@@ -91,8 +91,8 @@
                                                     <action selector="loginBtnPressed:" destination="ru6-BC-kGW" eventType="touchUpInside" id="OEl-kQ-dFA"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="S3h-Zt-PtA">
-                                                <rect key="frame" x="42" y="227" width="303" height="34"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3h-Zt-PtA">
+                                                <rect key="frame" x="44" y="227" width="287" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoM-EC-ueM">
                                                         <rect key="frame" x="0.0" y="0.0" width="209" height="34"/>
@@ -105,7 +105,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHv-Vw-Zzn">
-                                                        <rect key="frame" x="225" y="0.0" width="78" height="34"/>
+                                                        <rect key="frame" x="209" y="0.0" width="78" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="78" id="584-Id-WLa"/>
                                                             <constraint firstAttribute="height" constant="34" id="86U-Pl-13f"/>
@@ -126,12 +126,11 @@
                                             <constraint firstAttribute="trailing" secondItem="SaW-M8-7lL" secondAttribute="trailing" constant="22" id="5hA-KT-lQp"/>
                                             <constraint firstAttribute="trailing" secondItem="zU1-3j-7In" secondAttribute="trailing" constant="38" id="E94-w7-xlJ"/>
                                             <constraint firstItem="S3h-Zt-PtA" firstAttribute="top" secondItem="zU1-3j-7In" secondAttribute="bottom" constant="21" id="IpT-Pc-W9C"/>
+                                            <constraint firstItem="S3h-Zt-PtA" firstAttribute="centerX" secondItem="4Wa-F7-hv5" secondAttribute="centerX" id="Pyd-Dt-Rk1"/>
                                             <constraint firstItem="S3h-Zt-PtA" firstAttribute="top" secondItem="zU1-3j-7In" secondAttribute="bottom" constant="21" id="RY6-ky-4Of"/>
                                             <constraint firstItem="zU1-3j-7In" firstAttribute="top" secondItem="SaW-M8-7lL" secondAttribute="bottom" constant="18" id="YzI-uo-6WV"/>
                                             <constraint firstAttribute="height" constant="279" id="aeJ-9t-pCq"/>
                                             <constraint firstItem="SaW-M8-7lL" firstAttribute="top" secondItem="4Wa-F7-hv5" secondAttribute="top" constant="16" id="geM-CD-tXK"/>
-                                            <constraint firstAttribute="trailing" secondItem="S3h-Zt-PtA" secondAttribute="trailing" constant="30" id="mDg-Qd-1ed"/>
-                                            <constraint firstItem="S3h-Zt-PtA" firstAttribute="leading" secondItem="4Wa-F7-hv5" secondAttribute="leading" constant="42" id="mc1-t3-q9B"/>
                                             <constraint firstAttribute="bottom" secondItem="S3h-Zt-PtA" secondAttribute="bottom" constant="18" id="ntA-97-YH7"/>
                                             <constraint firstItem="SaW-M8-7lL" firstAttribute="leading" secondItem="4Wa-F7-hv5" secondAttribute="leading" constant="23" id="veL-6r-1tn"/>
                                         </constraints>
