@@ -28,32 +28,35 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registeredPressed(_ sender: TKTransitionSubmitButton) {
         
+        SVProgressHUD.show()
+        
         if let email = emailTextField.text, let password = passwordTextField.text,let confirmPassword = confirmPasswordTextField.text, (email.count > 0 && password.count > 0 && confirmPassword.count > 0) {
             
             if confirmPassword != password {
                 createAlert(controllertitle: "Error Message", message: "Password does not match the confirm password.", actionTitle: "Ok")
                 sender.shake()
+                SVProgressHUD.dismiss()
                 
             }else{
                 AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
                     guard errMsg == nil else {
                         
                         self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
-                        sender.shake()
+                        SVProgressHUD.dismiss()
                         return
                     }
-                    sender.animate(1, completion: {
-                        self.performSegue(withIdentifier: "goToHealthMain", sender: self)
-                    })
+                    
+                    self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                    SVProgressHUD.dismiss()
                 }
             }
         }else{
             createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
+            SVProgressHUD.dismiss()
             sender.shake()
             
         }
     }
-    
     
     func createAlert(controllertitle: String,message: String,actionTitle: String){
         let alert = UIAlertController(title: controllertitle, message: message, preferredStyle: .alert)

@@ -198,7 +198,7 @@
                                                     <constraint firstAttribute="width" constant="280" id="Mt5-co-btp"/>
                                                     <constraint firstAttribute="height" constant="52" id="f1S-H3-KkY"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -208,7 +208,7 @@
                                                     <constraint firstAttribute="width" constant="280" id="51D-Qn-JuT"/>
                                                     <constraint firstAttribute="height" constant="52" id="QXX-jH-uBR"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -218,8 +218,8 @@
                                                     <constraint firstAttribute="width" constant="280" id="f1P-a0-4oS"/>
                                                     <constraint firstAttribute="height" constant="52" id="pSU-O0-eEd"/>
                                                 </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
