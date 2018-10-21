@@ -76,7 +76,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-3j-7In">
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-3j-7In" customClass="TKTransitionSubmitButton" customModule="TKSubmitTransition">
                                                 <rect key="frame" x="66" y="154" width="271" height="52"/>
                                                 <color key="backgroundColor" red="0.097387246787548065" green="0.52260202169418335" blue="0.56187105178833008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHA-F3-euR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="685.90704647676171"/>
+            <point key="canvasLocation" x="706" y="810"/>
         </scene>
         <!--Helth AI-->
         <scene sceneID="tne-QT-ifu">
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768.8" y="-255.02248875562222"/>
+            <point key="canvasLocation" x="1482" y="-116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="K1T-Ok-MHI">

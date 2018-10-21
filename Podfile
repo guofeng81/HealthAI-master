@@ -12,6 +12,7 @@ pod 'Firebase/Auth'
 pod 'SVProgressHUD'
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON'
+pod 'TKSubmitTransition', :git => 'https://github.com/entotsu/TKSubmitTransition.git', :branch => 'swift4'
 
 
 end

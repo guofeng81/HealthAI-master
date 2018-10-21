@@ -1,13 +1,10 @@
 //
 //  ViewController.swift
 //  HealthAI
-//
-//  Created by Naresh Kumar on 02/10/18.
-//  Copyright © 2018 Team9. All rights reserved.
-//
+
 
 import UIKit
-
+import TKSubmitTransition
 
 class ViewController: UIViewController {
 
@@ -31,22 +28,27 @@ class ViewController: UIViewController {
         loginBtn.clipsToBounds = true
     }
     
-    @IBAction func registerBtnPressed(_ sender: UIButton) {
+    @IBAction func registerBtnPressed(_ sender: TKTransitionSubmitButton) {
         performSegue(withIdentifier: "goToRegister", sender: self)
     }
     
-    @IBAction func loginBtnPressed(_ sender: UIButton) {
+    @IBAction func loginBtnPressed(_ sender: TKTransitionSubmitButton) {
        
         if let email = emailTextField.text, let password = passwordTextField.text, (email.count > 0 && password.count > 0) {
             AuthServices.instance.login(email: email, password: password) { (errMsg, data) in
                 guard errMsg == nil else {
                     self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
+                    sender.shake()
                     return
                 }
-                self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                sender.animate(1, completion: {
+                    self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                })
             }
         }else{
             createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
+            sender.shake()
+        
         }
     }
     
@@ -74,5 +76,18 @@ extension UITextField {
         self.layer.masksToBounds = true
     }
 }
+
+extension UIButton {
+    func shake(){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10, y: self.center.y))
+        self.layer.add(animation, forKey: "position")
+    }
+}
+
 
 
