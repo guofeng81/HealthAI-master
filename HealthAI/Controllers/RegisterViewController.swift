@@ -9,39 +9,51 @@
 import UIKit
 import Firebase
 import SVProgressHUD
+import TKSubmitTransition
 
 class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRegisterView()
+        
     }
     
+    @IBOutlet weak var registerBtn: UIButton!
+    
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func registerPressed(_ sender: UIButton) {
+    @IBAction func registeredPressed(_ sender: TKTransitionSubmitButton) {
         
-        SVProgressHUD.show()
-        
-        if let email = emailTextField.text, let password = passwordTextField.text, (email.count > 0 && password.count > 0) {
+        if let email = emailTextField.text, let password = passwordTextField.text,let confirmPassword = confirmPasswordTextField.text, (email.count > 0 && password.count > 0 && confirmPassword.count > 0) {
             
-            AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
-                guard errMsg == nil else {
-                    SVProgressHUD.dismiss()
-                    self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
-                    return
+            if confirmPassword != password {
+                createAlert(controllertitle: "Error Message", message: "Password does not match the confirm password.", actionTitle: "Ok")
+                sender.shake()
+                
+            }else{
+                AuthServices.instance.signup(email: email, password: password) { (errMsg, data) in
+                    guard errMsg == nil else {
+                        
+                        self.createAlert(controllertitle: "Error Authentication", message: errMsg!, actionTitle: "Ok")
+                        sender.shake()
+                        return
+                    }
+                    sender.animate(1, completion: {
+                        self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                    })
                 }
-                self.performSegue(withIdentifier: "goToHealthMain", sender: self)
-                SVProgressHUD.dismiss()
             }
-            
         }else{
             createAlert(controllertitle: "Username and Password Required", message: "You must provide both username and password", actionTitle: "Ok")
-            SVProgressHUD.dismiss()
+            sender.shake()
             
         }
     }
+    
     
     func createAlert(controllertitle: String,message: String,actionTitle: String){
         let alert = UIAlertController(title: controllertitle, message: message, preferredStyle: .alert)
@@ -49,4 +61,16 @@ class RegisterViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func setupRegisterView(){
+        emailTextField.setPadding()
+        emailTextField.underlined()
+        passwordTextField.setPadding()
+        passwordTextField.underlined()
+        confirmPasswordTextField.setPadding()
+        confirmPasswordTextField.underlined()
+        registerBtn.layer.cornerRadius = 25.0
+        registerBtn.clipsToBounds = true
+    }
+    
 }
+

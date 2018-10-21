@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         loginBtn.clipsToBounds = true
     }
     
-    @IBAction func registerBtnPressed(_ sender: TKTransitionSubmitButton) {
-        performSegue(withIdentifier: "goToRegister", sender: self)
+    @IBAction func registerBtnPressed(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "goToRegister", sender: self)
     }
     
     @IBAction func loginBtnPressed(_ sender: TKTransitionSubmitButton) {
