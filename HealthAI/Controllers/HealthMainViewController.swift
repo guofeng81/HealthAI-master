@@ -20,7 +20,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-    
     @IBOutlet weak var weatherImage: UIImageView!
     
     @IBOutlet weak var cityLabel: UILabel!
@@ -44,21 +43,12 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         if let user =  Auth.auth().currentUser {
             print(user.email ?? "No email address!")
             print(user.uid)
-        }
-        
+        }        
     }
-    
-    
     
     @IBAction func cameraPressed(_ sender: UIButton) {
 
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.delegate = self
-//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-//            imagePicker.allowsEditing = false
-//            self.present(imagePicker,animated: true){
-//            }
             setupImagePickerController(type: "camera")
         }
     }
@@ -68,12 +58,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         
         setupImagePickerController(type: "photolibrary")
         
-//        let image = UIImagePickerController()
-//        image.delegate = self
-//        image.sourceType = UIImagePickerController.SourceType.photoLibrary
-//        image.allowsEditing = true
-//        self.present(image,animated: true){
-//        }
     }
     
     func setupImagePickerController(type:String){
@@ -166,7 +150,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     func updateUIWeatherData(weatherDataModel: WeatherDataModel){
     
         cityLabel.text = weatherDataModel.city
-        //temperatureLabel.text = "\(weatherDataModel.temperature)°C"
+        temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
         //conditionLabel.text = weatherDataModel.weatherCondition
         
