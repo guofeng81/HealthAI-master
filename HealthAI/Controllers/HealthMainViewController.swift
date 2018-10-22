@@ -12,11 +12,14 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
+class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
 //    @IBOutlet weak var cityLabel: UILabel!
 //    @IBOutlet weak var weatherImage: UIImageView!
 //    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
     
     @IBOutlet weak var weatherImage: UIImageView!
     
@@ -24,7 +27,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    @IBOutlet weak var conditionLabel: UILabel!
+    //@IBOutlet weak var conditionLabel: UILabel!
     
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "47aa6d0303fe5a8186915aa57b079446"
@@ -36,11 +39,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
+        loadLocationManager()
         
         if let user =  Auth.auth().currentUser {
             print(user.email ?? "No email address!")
@@ -48,6 +47,60 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
         }
         
     }
+    
+    
+    
+    @IBAction func cameraPressed(_ sender: UIButton) {
+
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
+//            let imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+//            imagePicker.allowsEditing = false
+//            self.present(imagePicker,animated: true){
+//            }
+            setupImagePickerController(type: "camera")
+        }
+    }
+    
+    
+    @IBAction func loadImagePressed(_ sender: UIButton) {
+        
+        setupImagePickerController(type: "photolibrary")
+        
+//        let image = UIImagePickerController()
+//        image.delegate = self
+//        image.sourceType = UIImagePickerController.SourceType.photoLibrary
+//        image.allowsEditing = true
+//        self.present(image,animated: true){
+//        }
+    }
+    
+    func setupImagePickerController(type:String){
+        
+        let image = UIImagePickerController()
+        image.delegate = self
+        if type == "camera"{
+            image.sourceType = UIImagePickerController.SourceType.camera
+        }else if type == "photolibrary" {
+            image.sourceType = UIImagePickerController.SourceType.photoLibrary
+        }
+        image.allowsEditing = true
+        self.present(image,animated: true){
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+             backgroundImageView.image = image
+        }else{
+            //display the error message
+        }
+       self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
     //MARK - didUpdate the location methods which check the location update
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -63,7 +116,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
             let params : [String:String] = ["lat":String(latitude), "lon":String(logititude),"appId": APP_ID]
             
             getWeatherData(url:WEATHER_URL,parameters: params)
-            
             
         }
     }
@@ -114,9 +166,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     func updateUIWeatherData(weatherDataModel: WeatherDataModel){
     
         cityLabel.text = weatherDataModel.city
-        temperatureLabel.text = "\(weatherDataModel.temperature)°C"
+        //temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
-        conditionLabel.text = weatherDataModel.weatherCondition
+        //conditionLabel.text = weatherDataModel.weatherCondition
         
     }
     
@@ -124,6 +176,14 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
         cityLabel.text = "Location Unavailable"
+    }
+    
+    func loadLocationManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
     }
     
 }
