@@ -26,17 +26,24 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    
+    @IBOutlet weak var workoutCardView: CardView!
+    
+    
     //@IBOutlet weak var conditionLabel: UILabel!
     
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "47aa6d0303fe5a8186915aa57b079446"
     
     let weatherDataModel = WeatherDataModel()
-
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //MARK - Add CardView Gesture
+        let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        self.workoutCardView.addGestureRecognizer(TapGesture)
         
         loadLocationManager()
         
@@ -45,6 +52,13 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
             print(user.uid)
         }        
     }
+    
+    @objc func handleTap(sender:UITapGestureRecognizer){
+        performSegue(withIdentifier: "goToWorkout", sender: self)
+    }
+    
+    
+    
     
     @IBAction func cameraPressed(_ sender: UIButton) {
 
