@@ -18,7 +18,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
 //    @IBOutlet weak var weatherImage: UIImageView!
 //    @IBOutlet weak var temperatureLabel: UILabel!
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    //@IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBOutlet weak var weatherImage: UIImageView!
     
@@ -26,7 +26,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    @IBOutlet weak var workoutCardView: CardView!
+   // @IBOutlet weak var workoutCardView: CardView!
     
     
     //@IBOutlet weak var conditionLabel: UILabel!
@@ -43,12 +43,11 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK - Add CardView Gesture
+//MARK - Add CardView Gesture
         //let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         //self.workoutCardView.addGestureRecognizer(TapGesture)
         
         loadLocationManager()
-        
         setupMenu()
         
 //        if let user =  Auth.auth().currentUser {
@@ -63,17 +62,13 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     
     @IBAction func cameraPressed(_ sender: UIButton) {
-
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
             setupImagePickerController(type: "camera")
         }
     }
     
-    
     @IBAction func loadImagePressed(_ sender: UIButton) {
-        
         setupImagePickerController(type: "photolibrary")
-        
     }
     
     func setupImagePickerController(type:String){
@@ -92,14 +87,13 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-             backgroundImageView.image = image
+             //backgroundImageView.image = image
         }else{
             //display the error message
         }
-       self.dismiss(animated: true, completion: nil)
         
+       self.dismiss(animated: true, completion: nil)
     }
-    
     
     //MARK - didUpdate the location methods which check the location update
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -108,29 +102,23 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         if location.horizontalAccuracy > 1{
             locationManager.stopUpdatingLocation()
             print("logititude= \(location.coordinate.longitude)")
-            
-            
+
             let logititude = location.coordinate.longitude
             let latitude = location.coordinate.latitude
-            
             let params : [String:String] = ["lat":String(latitude), "lon":String(logititude),"appId": APP_ID]
-            
             getWeatherData(url:WEATHER_URL,parameters: params)
-            
         }
     }
     
     func getWeatherData(url:String,parameters:[String:String]){
         
-        Alamofire.request(url,method:.get,parameters:parameters).responseJSON { (response) in
+    Alamofire.request(url,method:.get,parameters:parameters).responseJSON { (response) in
             if response.result.isSuccess{
                 print("Success! Got the weather data")
                 
                 let weatherJSON :JSON = JSON(response.result.value!)
                 print(weatherJSON)
                 self.updateWeatherData(json: weatherJSON)
-                
-                
             }else{
                 print("Error, \(String(describing: response.result.error))")
             }
@@ -147,29 +135,26 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
             weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
             weatherDataModel.weatherCondition = json["weather"]["main"].stringValue
             
-            //updateUIWeatherData(weatherDataModel: weatherDataModel)
+            updateUIWeatherData(weatherDataModel: weatherDataModel)
             
             print(weatherDataModel.temperature)
             print(weatherDataModel.city)
             print(weatherDataModel.weatherIconName)
             print(weatherDataModel.weatherCondition)
-            
-            
+     
         }else{
             print("Weather Unavailable")
         }
-        
     }
     
     //MARK - Update the Weather UI
     
     func updateUIWeatherData(weatherDataModel: WeatherDataModel){
     
-        //cityLabel.text = weatherDataModel.city
+        cityLabel.text = weatherDataModel.city
         temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
         //conditionLabel.text = weatherDataModel.weatherCondition
-        
     }
     
     //MARK - didFailWithError which tell when the location update is fail
