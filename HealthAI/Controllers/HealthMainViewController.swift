@@ -26,7 +26,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    
     @IBOutlet weak var workoutCardView: CardView!
     
     
