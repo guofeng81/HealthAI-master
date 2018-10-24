@@ -24,18 +24,22 @@ class ViewController: UIViewController,UITextFieldDelegate {
         setupLoginView()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+       
         
          let tapGesture = UITapGestureRecognizer(target: self, action: #selector (loginViewTapped))
          loginView.addGestureRecognizer(tapGesture)
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     @objc func loginViewTapped() {
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
     }
-    
-   
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
@@ -53,8 +57,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    
-
     func setupLoginView(){
         registerBtn.layer.cornerRadius  = 4
         emailTextField.setPadding()

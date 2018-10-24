@@ -238,11 +238,14 @@ extension HealthMainViewController: SidebarViewDelegate {
         case .help:
             print("Help")
         case .signOut:
-            
             print("Sign out!!")
             do {
-                try Auth.auth().signOut()
-                //self.navigationController?.popToRootViewController(animated: true)
+                if Auth.auth().currentUser != nil {
+                    try Auth.auth().signOut()
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                }else{
+                    print("There is no user log in. ")
+                }
                 
             }
             catch {
