@@ -296,10 +296,10 @@
             </objects>
             <point key="canvasLocation" x="1791" y="896"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="WkP-hv-kBp">
             <objects>
-                <viewController id="Vvm-r6-40B" sceneMemberID="viewController">
+                <viewController id="Vvm-r6-40B" customClass="EditProfileViewController" customModule="HealthAI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8b4-xa-IHi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRm-9t-cPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-529" y="832"/>
+            <point key="canvasLocation" x="-190" y="832"/>
         </scene>
         <!--Helth AI-->
         <scene sceneID="tne-QT-ifu">
@@ -445,6 +445,6 @@
         <image name="username" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JPk-Kh-x2J"/>
+        <segue reference="DbA-5H-fR7"/>
     </inferredMetricsTieBreakers>
 </document>

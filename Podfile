@@ -9,6 +9,7 @@ target 'HealthAI' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
+pod 'Firebase/Database'
 pod 'SVProgressHUD'
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON'

@@ -11,6 +11,7 @@ import Firebase
 import CoreLocation
 import Alamofire
 import SwiftyJSON
+import FirebaseDatabase
 
 class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
@@ -26,6 +27,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     @IBOutlet weak var cityLabel: UILabel!
     
     @IBOutlet weak var temperatureLabel: UILabel!
+    
+    
+    var databaseRef : DatabaseReference!
     
    // @IBOutlet weak var workoutCardView: CardView!
     
@@ -43,10 +47,16 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        databaseRef = Database.database().reference()
         
 //MARK - Add CardView Gesture
         //let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         //self.workoutCardView.addGestureRecognizer(TapGesture)
+        
+        if let user = Auth.auth().currentUser{
+             createUserProfile(user)
+        }
+        
         
         loadLocationManager()
         setupMenu()
@@ -56,6 +66,23 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
 //            print(user.uid)
 //        }
     }
+    
+    func createUserProfile(_ user: User){
+        let delimiter = "@"
+        let email = user.email
+        let uName = email?.components(separatedBy: delimiter)
+        let newUser = ["email":user.email,"username": uName![0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6"]
+        
+        self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }else{
+                print("Profile successfully created!")
+            }
+        }
+    }
+    
     
     @objc func handleTap(sender:UITapGestureRecognizer){
         performSegue(withIdentifier: "goToWorkout", sender: self)
