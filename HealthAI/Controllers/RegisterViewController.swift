@@ -16,7 +16,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRegisterView()
-        
     }
     
     @IBOutlet weak var registerBtn: UIButton!

@@ -32,8 +32,6 @@ class EditProfileViewController: UIViewController {
 
             let username = dictionary?["username"] as? String ?? ""
            
-
-
             if let profileImageURL = dictionary?["photo"] as? String {
 
                 let url = URL(string: profileImageURL)
@@ -63,11 +61,7 @@ class EditProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
     @IBAction func editProfileBtn(_ sender: Any) {
-        
-        
         
         
     }

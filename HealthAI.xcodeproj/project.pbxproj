@@ -20,6 +20,7 @@
 		B311DCEB217F808500F8C8E3 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B311DCEA217F808500F8C8E3 /* SidebarView.swift */; };
 		B3428D1421753957000BEFAE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3428D1321753957000BEFAE /* RegisterViewController.swift */; };
 		B3574736217F820800A141DC /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3574735217F820800A141DC /* EditProfileViewController.swift */; };
+		B357476921811EEC00A141DC /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B357476821811EEC00A141DC /* SlideAnimation.swift */; };
 		FE70AD21C410493CA553750D /* Pods_HealthAI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4E58E5D376F852DBDD912E /* Pods_HealthAI.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		B311DCEA217F808500F8C8E3 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		B3428D1321753957000BEFAE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B3574735217F820800A141DC /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B357476821811EEC00A141DC /* SlideAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		E40F50F27A038588BD108CD7 /* Pods-HealthAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthAI.release.xcconfig"; path = "Pods/Target Support Files/Pods-HealthAI/Pods-HealthAI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 		6455C8E221642E36009F4D33 /* HealthAI */ = {
 			isa = PBXGroup;
 			children = (
+				B357476721811ED500A141DC /* Animations */,
 				6455C8E321642E36009F4D33 /* AppDelegate.swift */,
 				B30E61C92176C651004135B9 /* Model */,
 				B30E61C521756EF0004135B9 /* Services */,
@@ -150,6 +153,14 @@
 				B30E75C0217E77E100231ED3 /* CardView.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B357476721811ED500A141DC /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				B357476821811EEC00A141DC /* SlideAnimation.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B357476921811EEC00A141DC /* SlideAnimation.swift in Sources */,
 				B30E75C1217E77E100231ED3 /* CardView.swift in Sources */,
 				B311DCEB217F808500F8C8E3 /* SidebarView.swift in Sources */,
 				6455C8E621642E36009F4D33 /* ViewController.swift in Sources */,

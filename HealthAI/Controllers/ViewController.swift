@@ -8,8 +8,7 @@ import TKSubmitTransition
 
 class ViewController: UIViewController,UITextFieldDelegate {
     
-    
-    
+
     @IBOutlet weak var loginView: UIView!
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
@@ -25,7 +24,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
        
-        
          let tapGesture = UITapGestureRecognizer(target: self, action: #selector (loginViewTapped))
          loginView.addGestureRecognizer(tapGesture)
         
@@ -64,6 +62,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func registerBtnPressed(_ sender: UIButton) {
+        
+        if self.heightConstraint.constant > 200 {
+            UIView.animate(withDuration: 0.5) {
+                self.heightConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
+        }
          self.performSegue(withIdentifier: "goToRegister", sender: self)
     }
     

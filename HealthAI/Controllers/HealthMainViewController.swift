@@ -150,7 +150,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
                 print("Error, \(String(describing: response.result.error))")
             }
         }
-        
     }
     
     func updateWeatherData(json:JSON){
@@ -236,7 +235,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
-    
 }
 
 extension HealthMainViewController: SidebarViewDelegate {
