@@ -30,8 +30,8 @@ class EditProfileViewController: UIViewController {
         databaseRef.child("profile").child(userId!).observeSingleEvent(of: .value, with:{ (snapshop) in
             let dictionary = snapshop.value as? NSDictionary
 
-            //let username = dictionary?["username"] as? String ?? ""
-            //self.usernameLabel.text = username
+            let username = dictionary?["username"] as? String ?? ""
+           
 
 
             if let profileImageURL = dictionary?["photo"] as? String {
@@ -47,6 +47,9 @@ class EditProfileViewController: UIViewController {
                         self.profileImageView.image = UIImage(data: data!)
                     }
                 }).resume()
+                
+                 self.usernameLabel.text = username
+                
             }
         }){
             (error) in
