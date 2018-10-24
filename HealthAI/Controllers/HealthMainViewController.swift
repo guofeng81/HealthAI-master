@@ -83,7 +83,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         }
     }
     
-    
     @objc func handleTap(sender:UITapGestureRecognizer){
         performSegue(withIdentifier: "goToWorkout", sender: self)
     }
@@ -249,8 +248,13 @@ extension HealthMainViewController: SidebarViewDelegate {
         }
         switch row {
         case .editProfile:
-            let vc=EditProfileViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            // Safe Present
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfile") as? EditProfileViewController
+            {
+                present(vc, animated: true, completion: nil)
+            }
+            
         case .messages:
             print("Messages")
         case .contact:
@@ -270,7 +274,6 @@ extension HealthMainViewController: SidebarViewDelegate {
                 }else{
                     print("There is no user log in. ")
                 }
-                
             }
             catch {
                 print("error: there was a problem signing out")
