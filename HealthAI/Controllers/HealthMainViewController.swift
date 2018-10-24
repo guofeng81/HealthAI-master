@@ -20,6 +20,10 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     //@IBOutlet weak var backgroundImageView: UIImageView!
     
+    
+    
+    
+    
     @IBOutlet weak var weatherImage: UIImageView!
     
     @IBOutlet weak var cityLabel: UILabel!
@@ -234,7 +238,17 @@ extension HealthMainViewController: SidebarViewDelegate {
         case .help:
             print("Help")
         case .signOut:
-            print("Sign out")
+            
+            print("Sign out!!")
+            do {
+                try Auth.auth().signOut()
+                //self.navigationController?.popToRootViewController(animated: true)
+                
+            }
+            catch {
+                print("error: there was a problem signing out")
+            }
+                break;
         case .none:
             break
         }

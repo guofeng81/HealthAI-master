@@ -6,8 +6,14 @@
 import UIKit
 import TKSubmitTransition
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController,UITextFieldDelegate {
+    
+    
+    
+    @IBOutlet weak var loginView: UIView!
+    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -16,7 +22,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginView()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+         let tapGesture = UITapGestureRecognizer(target: self, action: #selector (loginViewTapped))
+         loginView.addGestureRecognizer(tapGesture)
+        
     }
+    
+    @objc func loginViewTapped() {
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+    }
+    
+   
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.heightConstraint.constant = 308
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.heightConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    
 
     func setupLoginView(){
         registerBtn.layer.cornerRadius  = 4
@@ -31,6 +68,7 @@ class ViewController: UIViewController {
     @IBAction func registerBtnPressed(_ sender: UIButton) {
          self.performSegue(withIdentifier: "goToRegister", sender: self)
     }
+    
     
     @IBAction func loginBtnPressed(_ sender: TKTransitionSubmitButton) {
        

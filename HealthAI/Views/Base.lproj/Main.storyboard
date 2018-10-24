@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Wg-DO-CIb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ru6-BC-kGW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -155,7 +155,9 @@
                     <navigationItem key="navigationItem" id="z5q-BL-Vbs"/>
                     <connections>
                         <outlet property="emailTextField" destination="H6E-bm-S0Y" id="Y34-SG-Jjr"/>
+                        <outlet property="heightConstraint" destination="09t-ef-nuQ" id="Nmt-aj-m2P"/>
                         <outlet property="loginBtn" destination="zU1-3j-7In" id="CKa-cX-qNk"/>
+                        <outlet property="loginView" destination="GIh-ti-Mp9" id="pZH-E3-Rgl"/>
                         <outlet property="passwordTextField" destination="Hhx-w0-I3a" id="Pfl-co-NoX"/>
                         <outlet property="registerBtn" destination="yHv-Vw-Zzn" id="bKZ-vL-St9"/>
                         <segue destination="uoU-nr-KIw" kind="show" identifier="goToRegister" id="EUm-hM-i4f"/>
@@ -307,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRm-9t-cPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2737" y="896"/>
+            <point key="canvasLocation" x="-529" y="832"/>
         </scene>
         <!--Helth AI-->
         <scene sceneID="tne-QT-ifu">
@@ -443,6 +445,6 @@
         <image name="username" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DbA-5H-fR7"/>
+        <segue reference="JPk-Kh-x2J"/>
     </inferredMetricsTieBreakers>
 </document>
