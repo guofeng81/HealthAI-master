@@ -31,10 +31,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        emailTextField.text = ""
-        passwordTextField.text = ""
-    }
     
     @objc func loginViewTapped() {
         emailTextField.endEditing(true)
@@ -82,6 +78,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     return
                 }
                 sender.animate(1, completion: {
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.performSegue(withIdentifier: "goToHealthMain", sender: self)
                 })
             }

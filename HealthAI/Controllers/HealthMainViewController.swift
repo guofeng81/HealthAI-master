@@ -21,9 +21,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     //@IBOutlet weak var backgroundImageView: UIImageView!
     
     
-    
-    
-    
     @IBOutlet weak var weatherImage: UIImageView!
     
     @IBOutlet weak var cityLabel: UILabel!
