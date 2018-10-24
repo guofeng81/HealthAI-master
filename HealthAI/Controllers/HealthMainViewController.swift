@@ -57,9 +57,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
              createUserProfile(user)
         }
         
-        
-        loadLocationManager()
         setupMenu()
+        loadLocationManager()
+       
         
 //        if let user =  Auth.auth().currentUser {
 //            print(user.email ?? "No email address!")
