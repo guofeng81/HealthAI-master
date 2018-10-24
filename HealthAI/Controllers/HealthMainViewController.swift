@@ -265,10 +265,19 @@ extension HealthMainViewController: SidebarViewDelegate {
             print("Help")
         case .signOut:
             print("Sign out!!")
+            
             do {
                 if Auth.auth().currentUser != nil {
                     try Auth.auth().signOut()
-                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    
+                    //use push 
+                    
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? ViewController
+                    {
+                        present(vc, animated: true, completion: nil)
+                    }
+                    
+                    //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                 }else{
                     print("There is no user log in. ")
                 }
