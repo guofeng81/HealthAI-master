@@ -18,8 +18,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     var storageRef : StorageReference!
     var LoginUser  = Auth.auth().currentUser!
     
-    
-    
     @IBOutlet weak var profileImageView: UIImageView!
     
    
@@ -31,21 +29,33 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getReferences()
+       
+        loadDatabaseImage()
+
+    }
+    
+    func getReferences(){
         
         databaseRef = Database.database().reference()
         storageRef = Storage.storage().reference()
-
-        let userId = Auth.auth().currentUser?.uid
-
-        databaseRef.child("profile").child(userId!).observeSingleEvent(of: .value, with:{ (snapshop) in
+        
+    }
+    
+    
+    func loadDatabaseImage(){
+        
+        let userId = LoginUser.uid
+        
+        databaseRef.child("profile").child(userId).observeSingleEvent(of: .value, with:{ (snapshop) in
             let dictionary = snapshop.value as? NSDictionary
-
+            
             let username = dictionary?["username"] as? String ?? ""
-           
+            
             if let profileImageURL = dictionary?["photo"] as? String {
-
+                
                 let url = URL(string: profileImageURL)
-
+                
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                     if error != nil{
                         print(error!)
@@ -56,7 +66,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
                     }
                 }).resume()
                 
-                 self.usernameLabel.text = username
+                self.usernameLabel.text = username
                 
             }
         }){
@@ -64,35 +74,20 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
             print(error.localizedDescription)
             return
         }
-        
     }
+    
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editProfileBtn(_ sender: Any) {
-        
-    }
-    
-    
-    internal func setProfilePicture(imageView: UIImageView){
-        
-        imageView.layer.cornerRadius = 10
-        imageView.layer.borderColor = UIColor.white as! CGColor
-        imageView.layer.masksToBounds = true
-        //imageView.image = imageToSet
-    }
-    
-    
-    @IBAction func didTapProfilePicture(_ sender: UITapGestureRecognizer) {
-        
-        
         let myActionSheet = UIAlertController(title: "Profile Picture", message: "Select", preferredStyle: .actionSheet)
         
         let viewPicture = UIAlertAction(title: "View Picture", style: .default) { (action) in
-            let imageView = sender.view as! UIImageView
-            let newImageView = UIImageView(image: imageView.image)
+            //let imageView = sender.view as! UIImageView
+            
+            let newImageView = UIImageView(image: self.profileImageView.image)
             
             newImageView.frame = self.view.frame
             
@@ -104,7 +99,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
             newImageView.addGestureRecognizer(tap)
             
             self.view.addSubview(newImageView)
-            
             
         }
         
@@ -137,9 +131,17 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         myActionSheet.addAction(camera)
         myActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        
         self.present(myActionSheet, animated: true, completion: nil)
         
+    }
+    
+    
+    internal func setProfilePicture(imageView: UIImageView){
+        
+        imageView.layer.cornerRadius = 10
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.masksToBounds = true
+        //imageView.image = imageToSet
     }
     
     @objc func dismissFullScreenImage(sender : UITapGestureRecognizer){
@@ -158,41 +160,32 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
             
             let profilePicReference = storageRef.child("user_profile/\(LoginUser.uid)/profile_pic")
             
-            let uploadTask = profilePicReference.putData(imageData, metadata: nil) { (metadata, error) in
+            profilePicReference.putData(imageData, metadata: nil) { (metadata, error) in
                 if error == nil {
-                    let downloadUrl = self.storageRef.downloadURL(completion: { (url, error) in
-                        if error != nil {
-                            print(error!)
-                        }else{
-                            //self.databaseRef.child("profile").child(LoginUser.uid).child("photo").setValue(downloadUrl)
+                    print("Successfuly putting the data to the storage.")
+                    
+                    profilePicReference.downloadURL { (url, error) in
+                        if let downloadUrl = url {
+                            
+                            print(downloadUrl)
+                            self.databaseRef.child("profile").child(self.LoginUser.uid).child("photo").setValue(downloadUrl.absoluteString)
+                            
+                        }else {
+                            print("error")
                         }
-                    })
+                        
+                    }
                     
-                    
-                    
-                    
+                }else {
+                    print("Has error putting the data into the storage.")
                 }
             }
-            
-            
-            
-            
         }
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
-
     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 }
+
+
+
