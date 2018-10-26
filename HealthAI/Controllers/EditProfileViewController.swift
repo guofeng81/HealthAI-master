@@ -31,7 +31,8 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         super.viewDidLoad()
         getReferences()
        
-        loadDatabaseImage()
+        loadDatabaseImage(user: LoginUser)
+        setDatabaseUsername(user:LoginUser)
 
     }
     
@@ -42,20 +43,19 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         
     }
     
-    
-    func loadDatabaseImage(){
-        
-        let userId = LoginUser.uid
-        
-        databaseRef.child("profile").child(userId).observeSingleEvent(of: .value, with:{ (snapshop) in
+    func loadDatabaseImage(user: User){
+
+        //var image : UIImage?
+
+        databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
             let dictionary = snapshop.value as? NSDictionary
-            
-            let username = dictionary?["username"] as? String ?? ""
-            
+
+            //let username = dictionary?["username"] as? String ?? ""
+
             if let profileImageURL = dictionary?["photo"] as? String {
-                
+
                 let url = URL(string: profileImageURL)
-                
+
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                     if error != nil{
                         print(error!)
@@ -65,9 +65,9 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
                         self.profileImageView.image = UIImage(data: data!)
                     }
                 }).resume()
-                
-                self.usernameLabel.text = username
-                
+
+                //self.usernameLabel.text = username
+
             }
         }){
             (error) in
@@ -76,8 +76,23 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         }
     }
     
+    func setDatabaseUsername(user: User) {
+        
+        databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+            let dictionary = snapshop.value as? NSDictionary
+            DispatchQueue.main.async {
+                self.usernameLabel.text = dictionary?["username"] as? String
+            }
+    })
+        
+}
+    
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
+        
+        
+        
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -192,6 +207,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     
     
 }
+
 
 
 

@@ -204,6 +204,10 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         
     }
     
+    
+    
+    
+    
     func setupMenu(){
         
         let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
@@ -228,7 +232,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @objc func btnMenuAction() {
         blackScreen.isHidden=false
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)
         }) { (complete) in
             self.blackScreen.frame=CGRect(x: self.sidebarView.frame.width, y: 0, width: self.view.frame.width-self.sidebarView.frame.width, height: self.view.bounds.height+100)
@@ -238,7 +242,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     @objc func blackScreenTapAction(sender: UITapGestureRecognizer) {
         blackScreen.isHidden=true
         blackScreen.frame=self.view.bounds
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.5) {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 0, height: self.sidebarView.frame.height)
         }
     }
@@ -277,14 +281,13 @@ extension HealthMainViewController: SidebarViewDelegate {
                 if Auth.auth().currentUser != nil {
                     try Auth.auth().signOut()
                     
-                    //use push 
-                    
+                    //use push
                     if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? ViewController
                     {
                         present(vc, animated: true, completion: nil)
                     }
                     
-                    //self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+
                 }else{
                     print("There is no user log in. ")
                 }

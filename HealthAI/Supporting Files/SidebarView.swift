@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
+import Firebase
 
 protocol SidebarViewDelegate: class {
     func sidebarDidSelectRow(row: Row)
@@ -37,10 +39,13 @@ enum Row: String {
     }
 }
 
-
 class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     
+    var databaseRef : DatabaseReference = Database.database().reference()
+    
     var titleArr = [String]()
+    var username:String = ""
+    let user = Auth.auth().currentUser!
     
     weak var delegate: SidebarViewDelegate?
     
@@ -49,7 +54,11 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
-        titleArr = ["Team 9", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
+        
+       
+       
+        
+        titleArr = ["username", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
         
         setupViews()
         
@@ -81,15 +90,52 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
             
+            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+                let dictionary = snapshop.value as? NSDictionary
+                
+                if let profileImageURL = dictionary?["photo"] as? String {
+                    
+                    let url = URL(string: profileImageURL)
+                    
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        if error != nil{
+                            print(error!)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            cellImg.image = UIImage(data: data!)
+                        }
+                    }).resume()
+                    
+                    
+                }
+            }){
+                (error) in
+                print(error.localizedDescription)
+                return
+            }
             
-            cellImg.image = UIImage(named: "user")
+            //var username: String = titleArr[0]
+            
+            
+            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+                let dictionary = snapshop.value as? NSDictionary
+                DispatchQueue.main.async {
+                    self.titleArr[0] = dictionary?["username"] as! String
+                }
+            })
+            
+            
+            //cellImg.image = UIImage(named: "user")
             
             
             cell.addSubview(cellImg)
             
             let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
             cell.addSubview(cellLbl)
+            
             cellLbl.text = titleArr[indexPath.row]
+            
             cellLbl.font=UIFont.systemFont(ofSize: 17)
             cellLbl.textColor=UIColor.white
         } else {
