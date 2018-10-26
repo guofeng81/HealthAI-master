@@ -82,6 +82,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     }
     
     @IBAction func editProfileBtn(_ sender: Any) {
+        
         let myActionSheet = UIAlertController(title: "Profile Picture", message: "Select", preferredStyle: .actionSheet)
         
         let viewPicture = UIAlertAction(title: "View Picture", style: .default) { (action) in
@@ -135,13 +136,10 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         
     }
     
-    
     internal func setProfilePicture(imageView: UIImageView){
-        
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 40
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.masksToBounds = true
-        //imageView.image = imageToSet
     }
     
     @objc func dismissFullScreenImage(sender : UITapGestureRecognizer){
@@ -156,32 +154,40 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
             profileImageView.image = image
         }
         
-        if let imageData: Data = self.profileImageView.image!.pngData() {
+        savePictureToStorage(imageView: profileImageView)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func savePictureToStorage(imageView: UIImageView){
+        
+        if let imageData: Data = imageView.image!.pngData() {
             
             let profilePicReference = storageRef.child("user_profile/\(LoginUser.uid)/profile_pic")
             
-            profilePicReference.putData(imageData, metadata: nil) { (metadata, error) in
-                if error == nil {
-                    print("Successfuly putting the data to the storage.")
-                    
-                    profilePicReference.downloadURL { (url, error) in
-                        if let downloadUrl = url {
-                            
-                            print(downloadUrl)
-                            self.databaseRef.child("profile").child(self.LoginUser.uid).child("photo").setValue(downloadUrl.absoluteString)
-                            
-                        }else {
-                            print("error")
+            DispatchQueue.main.async {
+                profilePicReference.putData(imageData, metadata: nil) { (metadata, error) in
+                    if error == nil {
+                        print("Successfuly putting the data to the storage.")
+                        
+                        profilePicReference.downloadURL { (url, error) in
+                            if let downloadUrl = url {
+                                
+                                print(downloadUrl)
+                                self.databaseRef.child("profile").child(self.LoginUser.uid).child("photo").setValue(downloadUrl.absoluteString)
+                                
+                            }else {
+                                print("error downloading the url!")
+                            }
                         }
                         
+                    }else {
+                        print("error putting the data into the storage.")
                     }
-                    
-                }else {
-                    print("Has error putting the data into the storage.")
                 }
             }
         }
-        self.dismiss(animated: true, completion: nil)
     }
     
     

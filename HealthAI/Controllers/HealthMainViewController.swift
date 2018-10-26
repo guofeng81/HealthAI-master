@@ -33,7 +33,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
    // @IBOutlet weak var workoutCardView: CardView!
     
-    
     //@IBOutlet weak var conditionLabel: UILabel!
     
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -53,9 +52,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         //let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         //self.workoutCardView.addGestureRecognizer(TapGesture)
         
-        if let user = Auth.auth().currentUser{
-             createUserProfile(user)
-        }
+//        if let user = Auth.auth().currentUser{
+//             createUserProfile(user)
+//        }
         
         setupMenu()
         loadLocationManager()
@@ -67,21 +66,29 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
 //        }
     }
     
-    func createUserProfile(_ user: User){
-        let delimiter = "@"
-        let email = user.email
-        let uName = email?.components(separatedBy: delimiter)
-        let newUser = ["email":user.email,"username": uName![0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6"]
+    func createUserProfile(_ user: User!){
         
-        self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
-            if error != nil {
-                print(error!)
-                return
-            }else{
-                print("Profile successfully created!")
+        if user == nil{
+            let delimiter = "@"
+            let email = user.email
+            let uName = email?.components(separatedBy: delimiter)
+            
+            let newUser = ["email":email,"username": uName?[0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6"]
+            
+            self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
+                if error != nil {
+                    print(error!)
+                    return
+                }else{
+                    print("Profile successfully created!")
+                }
             }
+        }else{
+            print("user has existed.")
         }
+      
     }
+    
     
     @objc func handleTap(sender:UITapGestureRecognizer){
         performSegue(withIdentifier: "goToWorkout", sender: self)

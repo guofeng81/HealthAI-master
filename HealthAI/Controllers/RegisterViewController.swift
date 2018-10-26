@@ -11,11 +11,14 @@ import Firebase
 import SVProgressHUD
 import TKSubmitTransition
 
+
+
 class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRegisterView()
+        
     }
     
     @IBOutlet weak var registerBtn: UIButton!
@@ -46,6 +49,7 @@ class RegisterViewController: UIViewController {
                     }
                     
                     self.performSegue(withIdentifier: "goToHealthMain", sender: self)
+                    
                     SVProgressHUD.dismiss()
                 }
             }
@@ -56,6 +60,8 @@ class RegisterViewController: UIViewController {
             
         }
     }
+    
+    
     
    
     func createAlert(controllertitle: String,message: String,actionTitle: String){

@@ -80,7 +80,11 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
+            
+            
             cellImg.image = UIImage(named: "user")
+            
+            
             cell.addSubview(cellImg)
             
             let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
