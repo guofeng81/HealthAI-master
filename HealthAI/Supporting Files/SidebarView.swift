@@ -55,10 +55,7 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.clipsToBounds=true
         
         
-       
-       
-        
-        titleArr = ["username", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
+        titleArr = ["", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
         
         setupViews()
         
@@ -93,6 +90,10 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
                 let dictionary = snapshop.value as? NSDictionary
                 
+                self.titleArr[0] = dictionary?["username"] as! String
+                
+                print("username value,\(self.titleArr[0])")
+                
                 if let profileImageURL = dictionary?["photo"] as? String {
                     
                     let url = URL(string: profileImageURL)
@@ -107,7 +108,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
                         }
                     }).resume()
                     
-                    
                 }
             }){
                 (error) in
@@ -115,29 +115,15 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
                 return
             }
             
-            //var username: String = titleArr[0]
-            
-            
-            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-                let dictionary = snapshop.value as? NSDictionary
-                DispatchQueue.main.async {
-                    self.titleArr[0] = dictionary?["username"] as! String
-                }
-            })
-            
-            
-            //cellImg.image = UIImage(named: "user")
-            
-            
             cell.addSubview(cellImg)
             
-            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
-            cell.addSubview(cellLbl)
-            
-            cellLbl.text = titleArr[indexPath.row]
-            
-            cellLbl.font=UIFont.systemFont(ofSize: 17)
-            cellLbl.textColor=UIColor.white
+//            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
+//            
+//            cellLbl.text = titleArr[0]
+//            cell.addSubview(cellLbl)
+//
+//            cellLbl.font=UIFont.systemFont(ofSize: 17)
+//            cellLbl.textColor=UIColor.white
         } else {
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white
