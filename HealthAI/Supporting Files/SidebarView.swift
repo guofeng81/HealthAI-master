@@ -87,38 +87,41 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
             
-            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-                let dictionary = snapshop.value as? NSDictionary
-                
-                self.titleArr[0] = dictionary?["username"] as! String
-                
-                print("username value,\(self.titleArr[0])")
-                
-                if let profileImageURL = dictionary?["photo"] as? String {
-                    
-                    let url = URL(string: profileImageURL)
-                    
-                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                        if error != nil{
-                            print(error!)
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            cellImg.image = UIImage(data: data!)
-                        }
-                    }).resume()
-                    
-                }
-            }){
-                (error) in
-                print(error.localizedDescription)
-                return
-            }
+            DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef, user: user, imageView: cellImg)
+            
+            
+//            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+//                let dictionary = snapshop.value as? NSDictionary
+//
+//                //self.titleArr[0] = dictionary?["username"] as! String
+//
+//                //print("username value,\(self.titleArr[0])")
+//
+//                if let profileImageURL = dictionary?["photo"] as? String {
+//
+//                    let url = URL(string: profileImageURL)
+//
+//                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//                        if error != nil{
+//                            print(error!)
+//                            return
+//                        }
+//                        DispatchQueue.main.async {
+//                            cellImg.image = UIImage(data: data!)
+//                        }
+//                    }).resume()
+//
+//                }
+//            }){
+//                (error) in
+//                print(error.localizedDescription)
+//                return
+//            }
             
             cell.addSubview(cellImg)
             
 //            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
-//            
+//
 //            cellLbl.text = titleArr[0]
 //            cell.addSubview(cellLbl)
 //

@@ -28,6 +28,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    let user = Auth.auth().currentUser!
     
     var databaseRef : DatabaseReference!
     
@@ -205,9 +206,6 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     }
     
     
-    
-    
-    
     func setupMenu(){
         
         let btnMenu = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(btnMenuAction))
@@ -231,6 +229,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     }
     
     @objc func btnMenuAction() {
+        
         blackScreen.isHidden=false
         UIView.animate(withDuration: 0.5, animations: {
             self.sidebarView.frame=CGRect(x: 0, y: 0, width: 250, height: self.sidebarView.frame.height)

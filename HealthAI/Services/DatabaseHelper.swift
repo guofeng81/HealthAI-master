@@ -13,18 +13,7 @@ import Firebase
 
 class DatabaseHelper {
     
-   
-    private static let _instance = DatabaseHelper()
-    
-    static var instance: DatabaseHelper {
-        return _instance
-    }
-    
-    func loadDatabaseImage(databaseRef: DatabaseReference!, user: User) -> UIImage{
-        
-         //databaseRef = Database.database().reference()
-        
-        var image : UIImage?
+    static func loadDatabaseImage(databaseRef: DatabaseReference!, user: User, imageView: UIImageView){
         
         databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
             let dictionary = snapshop.value as? NSDictionary
@@ -40,9 +29,10 @@ class DatabaseHelper {
                         print(error!)
                         return
                     }
-//                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {
                         //self.profileImageView.image = UIImage(data: data!)
-                        image = UIImage(data: data!)
+                        imageView.image = UIImage(data: data!)
+                    }
                     
                 }).resume()
                 
@@ -55,10 +45,9 @@ class DatabaseHelper {
             return
         }
         
-        return image!
     }
     
-    func getDatabaseUsername(databaseRef: DatabaseReference!, user: User) -> String {
+    static func getDatabaseUsername(databaseRef: DatabaseReference!, user: User) -> String {
         
         var username : String = ""
         

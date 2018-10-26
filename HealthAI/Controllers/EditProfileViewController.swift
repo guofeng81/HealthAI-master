@@ -30,8 +30,10 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         getReferences()
+        setProfilePicture(imageView: profileImageView)
        
-        loadDatabaseImage(user: LoginUser)
+        //loadDatabaseImage(user: LoginUser)
+        DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef,user: LoginUser, imageView: profileImageView)
         setDatabaseUsername(user:LoginUser)
 
     }
@@ -89,8 +91,6 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
-        
-        
         
         
         self.dismiss(animated: true, completion: nil)
