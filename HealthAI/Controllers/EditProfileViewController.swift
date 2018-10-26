@@ -92,6 +92,10 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         
+       // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
+        
+        print("After calling the Notification Post func!")
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -171,9 +175,15 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         
         savePictureToStorage(imageView: profileImageView)
         
+        
+        
+        // Update the Navigation Drawer (Sidebar View) image 
+        
+        
         self.dismiss(animated: true, completion: nil)
     }
     
+    //MARK -  Save the Profile Picture into Firebase Storage
     
     func savePictureToStorage(imageView: UIImageView){
         

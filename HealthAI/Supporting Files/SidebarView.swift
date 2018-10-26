@@ -41,6 +41,8 @@ enum Row: String {
 
 class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     
+    
+    
     var databaseRef : DatabaseReference = Database.database().reference()
     
     var titleArr = [String]()
@@ -50,12 +52,16 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegate: SidebarViewDelegate?
     
     override init(frame: CGRect) {
+        
+        
+        
+        
         super.init(frame: frame)
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
         
-        titleArr = ["", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
+        titleArr = ["team 9", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
         
         setupViews()
         
@@ -69,15 +75,24 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         myTableView.showsVerticalScrollIndicator=false
         myTableView.backgroundColor = UIColor.clear
         
+       
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleArr.count
+    }
+    
+    @objc func refreshTable(notification: NSNotification) {
+        
+        print("Received Notification")
+        myTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        
         if indexPath.row == 0 {
             cell.backgroundColor=UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
             let cellImg: UIImageView!
@@ -89,6 +104,16 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             
             DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef, user: user, imageView: cellImg)
             
+//             NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+//            myTableView.reloadData()
+            
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshTable(notification:)), name: NSNotification.Name(rawValue: "refresh"), object: nil)
+            
+            //print("reload the table view data!!!")
+            
+            
+            //read the database under photo link.
             
 //            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
 //                let dictionary = snapshop.value as? NSDictionary
@@ -118,6 +143,9 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
 //                return
 //            }
             
+            print("add cell Image!!!!!!!!")
+            
+//
             cell.addSubview(cellImg)
             
 //            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
@@ -147,8 +175,17 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             return 60
         }
     }
+
+        @objc func loadList(notification: NSNotification){
+            //load data here
+            myTableView.reloadData()
+        }
+    
     
     func setupViews() {
+        
+        
+        
         self.addSubview(myTableView)
         myTableView.topAnchor.constraint(equalTo: topAnchor).isActive=true
         myTableView.leftAnchor.constraint(equalTo: leftAnchor).isActive=true
