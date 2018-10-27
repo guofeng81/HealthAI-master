@@ -21,6 +21,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     //@IBOutlet weak var backgroundImageView: UIImageView!
     
+    @IBOutlet weak var weatherConditionLbl: UILabel!
     
     @IBOutlet weak var weatherImage: UIImageView!
     
@@ -68,6 +69,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     }
     
     func createUserProfile(_ user: User!){
+        
+        
+        //this is wrong, need to revise it. The user will always there. 
         
         if user == nil{
             let delimiter = "@"
@@ -161,25 +165,21 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     }
     
     func updateWeatherData(json:JSON){
+    
+        weatherDataModel.temperature = Int(json["main"]["temp"].double! - 273.15)
+        weatherDataModel.city = json["name"].stringValue
+        weatherDataModel.condition = json["weather"][0]["id"].intValue
+        weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+        weatherDataModel.weatherCondition = json["weather"][0]["description"].stringValue
         
-        if let tempResult = json["main"]["temp"].double {
-            weatherDataModel.temperature = Int(tempResult - 273.15)
-            weatherDataModel.city = json["name"].stringValue
-            weatherDataModel.condition = json["weather"]["id"].intValue
-            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
-            weatherDataModel.weatherCondition = json["weather"]["main"].stringValue
-            
-            updateUIWeatherData(weatherDataModel: weatherDataModel)
-            
-            print(weatherDataModel.temperature)
-            print(weatherDataModel.city)
-            print(weatherDataModel.weatherIconName)
-            print(weatherDataModel.weatherCondition)
+        updateUIWeatherData(weatherDataModel: weatherDataModel)
+        print(weatherDataModel.temperature)
+        print(weatherDataModel.city)
+        print(weatherDataModel.weatherIconName)
+        print(weatherDataModel.weatherCondition)
      
-        }else{
-            print("Weather Unavailable")
-        }
     }
+    
     
     //MARK - Update the Weather UI
     
@@ -188,7 +188,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         cityLabel.text = weatherDataModel.city
         temperatureLabel.text = "\(weatherDataModel.temperature)°C"
         weatherImage.image = UIImage(named: weatherDataModel.weatherIconName)
-        //conditionLabel.text = weatherDataModel.weatherCondition
+        weatherConditionLbl.text = weatherDataModel.weatherCondition
     }
     
     //MARK - didFailWithError which tell when the location update is fail
