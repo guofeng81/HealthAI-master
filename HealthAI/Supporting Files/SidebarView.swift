@@ -41,8 +41,6 @@ enum Row: String {
 
 class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     var databaseRef : DatabaseReference = Database.database().reference()
     
     var titleArr = [String]()
@@ -60,7 +58,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
         
-        
         titleArr = ["team 9", "Messages", "Contact", "Settings", "History", "Help", "Sign Out"]
         
         setupViews()
@@ -74,7 +71,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
         myTableView.bounces=false
         myTableView.showsVerticalScrollIndicator=false
         myTableView.backgroundColor = UIColor.clear
-        
        
     }
     
@@ -83,7 +79,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func refreshTable(notification: NSNotification) {
-        
         print("Received Notification")
         myTableView.reloadData()
     }
@@ -101,16 +96,18 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             cellImg.layer.masksToBounds=true
             cellImg.contentMode = .scaleAspectFill
             cellImg.layer.masksToBounds=true
+        
             
+            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
+            cellLbl.font=UIFont.systemFont(ofSize: 17)
+            cellLbl.textColor=UIColor.white
+        
             DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef, user: user, imageView: cellImg)
-            
-//             NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-//            myTableView.reloadData()
+            DatabaseHelper.setDatabaseUsername(databaseRef: databaseRef, user: user, label: cellLbl)
             
             
             NotificationCenter.default.addObserver(self, selector: #selector(refreshTable(notification:)), name: NSNotification.Name(rawValue: "refresh"), object: nil)
             
-            //print("reload the table view data!!!")
             
             
             //read the database under photo link.
@@ -142,19 +139,12 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
 //                print(error.localizedDescription)
 //                return
 //            }
-            
-            print("add cell Image!!!!!!!!")
+        
             
 //
             cell.addSubview(cellImg)
-            
-//            let cellLbl = UILabel(frame: CGRect(x: 110, y: cell.frame.height/2-15, width: 250, height: 30))
-//
-//            cellLbl.text = titleArr[0]
-//            cell.addSubview(cellLbl)
-//
-//            cellLbl.font=UIFont.systemFont(ofSize: 17)
-//            cellLbl.textColor=UIColor.white
+            cell.addSubview(cellLbl)
+          
         } else {
             cell.textLabel?.text=titleArr[indexPath.row]
             cell.textLabel?.textColor=UIColor.white

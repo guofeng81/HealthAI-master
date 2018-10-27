@@ -92,10 +92,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         
-       // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
-        
-        print("After calling the Notification Post func!")
         
         self.dismiss(animated: true, completion: nil)
     }

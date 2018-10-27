@@ -47,18 +47,14 @@ class DatabaseHelper {
         
     }
     
-    static func getDatabaseUsername(databaseRef: DatabaseReference!, user: User) -> String {
-        
-        var username : String = ""
+    static func setDatabaseUsername(databaseRef: DatabaseReference!, user: User, label: UILabel){
         
         databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
             
             let dictionary = snapshop.value as? NSDictionary
             
-            username = dictionary?["username"] as! String
+            label.text = dictionary?["username"] as? String
         })
-        
-        return username
     }
     
 }

@@ -24,7 +24,7 @@
                                     <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthAI" translatesAutoresizingMaskIntoConstraints="NO" id="7GE-Mn-heQ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                     </imageView>
-                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wa-F7-hv5">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wa-F7-hv5">
                                         <rect key="frame" x="0.0" y="324" width="375" height="279"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SaW-M8-7lL">
@@ -33,7 +33,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S1j-cF-Lx7">
                                                         <rect key="frame" x="0.0" y="0.0" width="330" height="52"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-4V-pz7">
+                                                            <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-4V-pz7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="KtR-P3-xAh"/>
@@ -54,7 +54,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GOF-bd-xYF">
                                                         <rect key="frame" x="0.0" y="68" width="330" height="52"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="Bih-Fj-A3k">
+                                                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="Bih-Fj-A3k">
                                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="MBF-LI-Isa"/>
@@ -74,7 +74,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-3j-7In" customClass="TKTransitionSubmitButton" customModule="TKSubmitTransition">
+                                            <button alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-3j-7In" customClass="TKTransitionSubmitButton" customModule="TKSubmitTransition">
                                                 <rect key="frame" x="66" y="154" width="271" height="52"/>
                                                 <color key="backgroundColor" red="0.097387246787548065" green="0.52260202169418335" blue="0.56187105178833008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -221,7 +221,7 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j68-Yi-BfH">
+                                    <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j68-Yi-BfH">
                                         <rect key="frame" x="47.5" y="303" width="280" height="52"/>
                                         <color key="backgroundColor" red="0.097387246787548065" green="0.52260202169418335" blue="0.56187105178833008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
