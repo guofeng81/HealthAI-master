@@ -1,8 +1,8 @@
 //
-//  EditProfileViewController.swift
+//  ProfileViewController.swift
 //  HealthAI
 //
-//  Created by Feng Guo on 10/23/18.
+//  Created by Feng Guo on 10/29/18.
 //  Copyright © 2018 Team9. All rights reserved.
 //
 
@@ -11,98 +11,75 @@ import FirebaseDatabase
 import Firebase
 import FirebaseStorage
 
-class EditProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
-   
+class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    
+    @IBOutlet var usernameLabel: UILabel!
+    
     var databaseRef : DatabaseReference!
     var storageRef : StorageReference!
     var LoginUser  = Auth.auth().currentUser!
-    
-    @IBOutlet weak var profileImageView: UIImageView!
-    
-   
-    @IBOutlet weak var usernameLabel: UILabel!
-    
-    
     var imagePicker = UIImagePickerController()
     
     
+    let bioList = ["Height","Weight","Glucose","Blood Pressure"]
+    
+    let unitList = ["cm","lb","mm","mm"]
+    
+    let values = ["150","150","150","150"]
+    
+    //MARK - Table View Set up
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bioCell", for: indexPath) as! BioCell
+        
+        cell.textLabel?.text = bioList[indexPath.row]
+        
+        // cell.bioLabel.text = bioList[indexPath.row]
+        cell.unitLabel.text = unitList[indexPath.row]
+        cell.valueLabel.text = values[indexPath.row]
+        
+        return cell
+    }
+    
+    
+    //MARK - Set up the Profile UIViewController
+    
+    @IBOutlet var profileImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         getReferences()
         setProfilePicture(imageView: profileImageView)
-       
-        //loadDatabaseImage(user: LoginUser)
+        
         DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef,user: LoginUser, imageView: profileImageView)
-        setDatabaseUsername(user:LoginUser)
-
+        DatabaseHelper.setDatabaseUsername(databaseRef: databaseRef, user: LoginUser, label: usernameLabel)
+        
     }
+    
     
     func getReferences(){
-        
         databaseRef = Database.database().reference()
         storageRef = Storage.storage().reference()
-        
     }
     
-//    func loadDatabaseImage(user: User){
-//
-//        //var image : UIImage?
-//
-//        databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-//            let dictionary = snapshop.value as? NSDictionary
-//
-//            //let username = dictionary?["username"] as? String ?? ""
-//
-//            if let profileImageURL = dictionary?["photo"] as? String {
-//
-//                let url = URL(string: profileImageURL)
-//
-//                URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-//                    if error != nil{
-//                        print(error!)
-//                        return
-//                    }
-//                    DispatchQueue.main.async {
-//                        self.profileImageView.image = UIImage(data: data!)
-//                    }
-//                }).resume()
-//
-//                //self.usernameLabel.text = username
-//
-//            }
-//        }){
-//            (error) in
-//            print(error.localizedDescription)
-//            return
-//        }
-//    }
-    
-    func setDatabaseUsername(user: User) {
-
-        databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-            let dictionary = snapshop.value as? NSDictionary
-            DispatchQueue.main.async {
-                self.usernameLabel.text = dictionary?["username"] as? String
-            }
-    })
-
-}
-    
-    
-    @IBAction func saveProfileBtn(_ sender: UIButton) {
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
-        
-        self.dismiss(animated: true, completion: nil)
+    internal func setProfilePicture(imageView: UIImageView){
+        imageView.layer.cornerRadius = 40
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.masksToBounds = true
     }
     
-    @IBAction func editProfileBtn(_ sender: Any) {
+    
+    @IBAction func editProfileImage(_ sender: UIButton) {
         
         let myActionSheet = UIAlertController(title: "Profile Picture", message: "Select", preferredStyle: .actionSheet)
         
         let viewPicture = UIAlertAction(title: "View Picture", style: .default) { (action) in
-            //let imageView = sender.view as! UIImageView
             
             let newImageView = UIImageView(image: self.profileImageView.image)
             
@@ -152,15 +129,21 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         
     }
     
-    internal func setProfilePicture(imageView: UIImageView){
-        imageView.layer.cornerRadius = 40
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.masksToBounds = true
+    
+    @IBAction func saveProfileBtn(_ sender: UIButton) {
+        
+        
+        
+        self.dismiss(animated: true, completion: nil)
+        
     }
+    
     
     @objc func dismissFullScreenImage(sender : UITapGestureRecognizer){
         sender.view?.removeFromSuperview()
     }
+    
+    //MARK -  Pick the image from the photo library
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -172,15 +155,11 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         
         savePictureToStorage(imageView: profileImageView)
         
-        
-        
-        // Update the Navigation Drawer (Sidebar View) image 
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
         
         
         self.dismiss(animated: true, completion: nil)
     }
-    
-    //MARK -  Save the Profile Picture into Firebase Storage
     
     func savePictureToStorage(imageView: UIImageView){
         
@@ -212,9 +191,5 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
         }
     }
     
-    
+
 }
-
-
-
-

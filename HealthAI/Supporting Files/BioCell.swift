@@ -8,11 +8,14 @@
 
 import UIKit
 
-class BioTableViewCell: UITableViewCell {
+class BioCell: UITableViewCell {
 
+    
     @IBOutlet var bioLabel: UILabel!
     
-    @IBOutlet var numberLabel: UILabel!
+    @IBOutlet var valueLabel: UILabel!
+    
+    @IBOutlet var unitLabel: UILabel!
     
     
     override func awakeFromNib() {

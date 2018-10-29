@@ -85,7 +85,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
             let email = user.email
             let uName = email?.components(separatedBy: delimiter)
             
-            let newUser = ["email":email,"username": uName?[0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6"]
+            let newUser = ["email":email,"username": uName?[0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6","height":"","weight":"","glucose": "","bloodpressure":""]
             
             self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
                 if error != nil {
@@ -265,7 +265,7 @@ extension HealthMainViewController: SidebarViewDelegate {
         case .editProfile:
             
             // Safe Present
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfile") as? ProfileViewController
             {
                 present(vc, animated: true, completion: nil)
             }

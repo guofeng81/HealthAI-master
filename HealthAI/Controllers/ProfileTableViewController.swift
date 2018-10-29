@@ -14,6 +14,7 @@ import FirebaseStorage
 class ProfileTableViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     
+    
     let bioList = ["Height","Weight","Glucose","Blood Pressure"]
     
     var values = ["","","",""]
@@ -69,7 +70,6 @@ class ProfileTableViewController: UITableViewController,UIImagePickerControllerD
     }
     
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         if indexPath.row == 0  && indexPath.section == 0{
@@ -93,10 +93,10 @@ class ProfileTableViewController: UITableViewController,UIImagePickerControllerD
             
             
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BioCell", for: indexPath) as! BioTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BioCell", for: indexPath) as! BioCell
             
-            cell.bioLabel.text = bioList[indexPath.row]
-            cell.numberLabel.text = values[indexPath.row]
+            //cell.bioLabel.text = bioList[indexPath.row]
+            //cell.numberLabel.text = values[indexPath.row]
             
             return cell
             
@@ -224,23 +224,25 @@ class ProfileTableViewController: UITableViewController,UIImagePickerControllerD
     }
     
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        
-//        setProfilePicture(imageView: self.profileImageView)
-//        
-//        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//            profileImageView.image = image
-//        }
-//        
-//        savePictureToStorage(imageView: profileImageView)
-//        
-//        
-//        
-//        // Update the Navigation Drawer (Sidebar View) image
-//        
-//        
-//        self.dismiss(animated: true, completion: nil)
-//    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let indexPath = IndexPath(row: 0, section: 0) //Set your row and section
+        if let cell = tableView.cellForRow(at: indexPath) as? ProfileTableViewCell {
+            setProfilePicture(imageView: cell.profileImageView)
+            
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                cell.profileImageView.image = image
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            
+            savePictureToStorage(imageView: cell.profileImageView)
+        }
+        
+        
+        // Update the Navigation Drawer (Sidebar View) image
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     func savePictureToStorage(imageView: UIImageView){
