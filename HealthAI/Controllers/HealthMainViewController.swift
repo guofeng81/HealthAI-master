@@ -20,7 +20,14 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
 //    @IBOutlet weak var temperatureLabel: UILabel!
     
     //@IBOutlet weak var backgroundImageView: UIImageView!
+   
     
+    @IBAction func goToProfileBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToProfile", sender: self)
+        
+        
+        
+    }
     @IBOutlet weak var weatherConditionLbl: UILabel!
     
     @IBOutlet weak var weatherImage: UIImageView!
@@ -258,7 +265,7 @@ extension HealthMainViewController: SidebarViewDelegate {
         case .editProfile:
             
             // Safe Present
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfile") as? EditProfileViewController
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController
             {
                 present(vc, animated: true, completion: nil)
             }

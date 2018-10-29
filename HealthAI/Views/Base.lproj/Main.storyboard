@@ -284,7 +284,7 @@
         <!--Profile Table View Controller-->
         <scene sceneID="Qxa-ic-cCU">
             <objects>
-                <tableViewController id="l1b-Ge-OAw" customClass="ProfileTableViewController" customModule="HealthAI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Edit" id="l1b-Ge-OAw" customClass="ProfileTableViewController" customModule="HealthAI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="okk-F8-SLa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,7 +400,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWy-e0-h9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="1535"/>
+            <point key="canvasLocation" x="3882" y="-276"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wvR-qG-AKj">
@@ -597,6 +597,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUe-A5-Kek">
+                                <rect key="frame" x="137" y="506" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="goToProfileBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sla-oc-Nqg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -616,11 +624,12 @@
                         <outlet property="weatherConditionLbl" destination="cd0-6R-PC1" id="r8G-Uz-VZb"/>
                         <outlet property="weatherImage" destination="s7U-kM-FW4" id="L7m-ei-9Gy"/>
                         <segue destination="AdT-ye-dLB" kind="show" identifier="goToWorkout" id="Hat-78-fIh"/>
+                        <segue destination="l1b-Ge-OAw" kind="show" identifier="goToProfile" id="cWb-SH-yAs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3300" y="-134.48275862068968"/>
+            <point key="canvasLocation" x="3041" y="-307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yd5-OL-RSN">
