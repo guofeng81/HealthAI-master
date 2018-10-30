@@ -49,7 +49,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         cell.valueLabel.text = loadBioValues(value: bio[indexPath.row])
         
-        bioTableView.reloadData()
+        //
+        //bioTableView.reloadData()
         
         return cell
     }
