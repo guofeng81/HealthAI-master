@@ -13,6 +13,8 @@ import Firebase
 
 class DatabaseHelper {
     
+    
+    
     static func loadDatabaseImage(databaseRef: DatabaseReference!, user: User, imageView: UIImageView){
         
         databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in

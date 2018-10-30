@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     let unitList = ["cm","lb","mm","mm"]
     
-    var values = ["150","150","150","150"]
+    var values = ["","","",""]
     
     //MARK - Table View Set up
     
@@ -112,6 +112,11 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef,user: LoginUser, imageView: profileImageView)
         DatabaseHelper.setDatabaseUsername(databaseRef: databaseRef, user: LoginUser, label: usernameLabel)
         
+        if values[0].count != 0 || values[1].count != 0 || values[2].count != 0 || values[3].count != 0 {
+            values = DatabaseHelper.loadBioVlaues(databaseRef: databaseRef, user: LoginUser)
+        }
+        
+        
     }
     
     
@@ -186,7 +191,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         //TODO - push all data which save in the screen to the database
         
-     DatabaseHelper.setBioValues(databaseRef: databaseRef, user: LoginUser, values: values)
+        DatabaseHelper.setBioValues(databaseRef: databaseRef, user: LoginUser, values: values)
         
         self.dismiss(animated: true, completion: nil)
         
