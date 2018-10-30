@@ -25,7 +25,10 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     let unitList = ["cm","lb","mm","mm"]
     
+    let bio = ["height","weight","glucose","bloodpressure"]
+    
     var values = ["","","",""]
+    
     
     //MARK - Table View Set up
     
@@ -36,13 +39,16 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bioCell", for: indexPath) as! BioCell
         
-        loadBioVlaues()
-        
         cell.textLabel?.text = bioList[indexPath.row]
         
         // cell.bioLabel.text = bioList[indexPath.row]
         cell.unitLabel.text = unitList[indexPath.row]
-        cell.valueLabel.text = values[indexPath.row]
+        
+        print("Values in the table view")
+        
+        print(loadBioValues(value: bio[indexPath.row]))
+        
+        cell.valueLabel.text = loadBioValues(value: bio[indexPath.row])
         
         return cell
     }
@@ -111,6 +117,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef,user: LoginUser, imageView: profileImageView)
         DatabaseHelper.setDatabaseUsername(databaseRef: databaseRef, user: LoginUser, label: usernameLabel)
         
+        print("Load Value function is called")
+       //loadBioVlaues()
         
        
             
@@ -120,25 +128,22 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     
-    func loadBioVlaues(){
+    func loadBioValues(value:String)->String{
+        
+        var newValue = ""
         
         databaseRef.child("profile").child(LoginUser.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
             
             let dictionary = snapshop.value as? NSDictionary
-            
-            self.values[0] = dictionary!["height"] as! String
-            self.values[1] = dictionary!["weight"] as! String
-            self.values[2] = dictionary!["glucose"] as! String
-            self.values[3] = dictionary!["bloodpressure"] as! String
-            
+             newValue = dictionary![value] as! String
+            //print("First Value \(newValue)")
         })
         
-        
+        return newValue
     }
     
     
-    
-    
+
     func getReferences(){
         databaseRef = Database.database().reference()
         storageRef = Storage.storage().reference()
