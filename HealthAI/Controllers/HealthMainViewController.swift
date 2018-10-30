@@ -21,6 +21,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     //@IBOutlet weak var backgroundImageView: UIImageView!
    
+    @IBOutlet var backgroundImageView: UIImageView!
     
     @IBOutlet weak var weatherConditionLbl: UILabel!
     
@@ -92,9 +93,9 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-             //backgroundImageView.image = image
+             backgroundImageView.image = image
         }else{
-            //display the error message
+            print("Can't get the background image.")
         }
         
        self.dismiss(animated: true, completion: nil)
