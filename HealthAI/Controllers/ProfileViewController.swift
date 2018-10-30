@@ -116,7 +116,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
             values = DatabaseHelper.loadBioVlaues(databaseRef: databaseRef, user: LoginUser)
         }
         
-        
     }
     
     
@@ -126,7 +125,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     internal func setProfilePicture(imageView: UIImageView){
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 50
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.masksToBounds = true
     }

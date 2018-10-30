@@ -8,11 +8,14 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseDatabase
 
 
 typealias Completion = (_ errMsg: String?,_ data: AnyObject?) -> Void
 
 class AuthServices{
+    
+     var databaseRef : DatabaseReference! = Database.database().reference()
     
     private static let _instance = AuthServices()
     
@@ -39,11 +42,32 @@ class AuthServices{
             if error != nil {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
             }else{
+                self.createUserProfile(result!.user)
                 onComplete?(nil,result?.user)
                 print("Successfully Sign up!!")
             }
         }
     }
+    
+    func createUserProfile(_ user: User!){
+        
+        let delimiter = "@"
+        let email = user.email
+        let uName = email?.components(separatedBy: delimiter)
+        
+        let newUser = ["email":email,"username": uName?[0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6","height": "","weight":"","glucose": "","bloodpressure":""]
+        
+        self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
+            if error != nil {
+                print(error!)
+                return
+            }else{
+                print("Profile successfully created!")
+            }
+        }
+    }
+    
+    
     
     func handleFirebaseError(error: NSError, onComplete: Completion?){
         print(error.debugDescription)
