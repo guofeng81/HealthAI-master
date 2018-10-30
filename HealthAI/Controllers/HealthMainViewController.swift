@@ -55,47 +55,12 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         //let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         //self.workoutCardView.addGestureRecognizer(TapGesture)
         
-        //if let user = Auth.auth().currentUser{
-             //createUserProfile(user)
-       // }
-        
         setupMenu()
         loadLocationManager()
        
-        
-//        if let user =  Auth.auth().currentUser {
-//            print(user.email ?? "No email address!")
-//            print(user.uid)
-//        }
     }
-    
-//    func createUserProfile(_ user: User!){
-//
-//
-//        //this is wrong, need to revise it. The user will always there.
-//
-//        if user == nil{
-//            let delimiter = "@"
-//            let email = user.email
-//            let uName = email?.components(separatedBy: delimiter)
-//
-//            let newUser = ["email":email,"username": uName?[0],"photo":"https://firebasestorage.googleapis.com/v0/b/healthai-f2f6f.appspot.com/o/empty_profile.png?alt=media&token=d25ab88e-e758-407d-bed9-cb6def5385a6","height": "","weight":"","glucose": "","bloodpressure":""]
-//
-//            self.databaseRef.child("profile").child(user.uid).setValue(newUser) { (error, ref) in
-//                if error != nil {
-//                    print(error!)
-//                    return
-//                }else{
-//                    print("Profile successfully created!")
-//                }
-//            }
-//        }else{
-//            print("user has existed.")
-//        }
-//
-//    }
-    
-    
+
+
     @objc func handleTap(sender:UITapGestureRecognizer){
         performSegue(withIdentifier: "goToWorkout", sender: self)
     }

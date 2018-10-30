@@ -51,9 +51,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     override init(frame: CGRect) {
         
-        
-        
-        
         super.init(frame: frame)
         self.backgroundColor=UIColor(red: 54/255, green: 55/255, blue: 56/255, alpha: 1.0)
         self.clipsToBounds=true
@@ -109,39 +106,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
             NotificationCenter.default.addObserver(self, selector: #selector(refreshTable(notification:)), name: NSNotification.Name(rawValue: "refresh"), object: nil)
             
             
-            
-            //read the database under photo link.
-            
-//            databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-//                let dictionary = snapshop.value as? NSDictionary
-//
-//                //self.titleArr[0] = dictionary?["username"] as! String
-//
-//                //print("username value,\(self.titleArr[0])")
-//
-//                if let profileImageURL = dictionary?["photo"] as? String {
-//
-//                    let url = URL(string: profileImageURL)
-//
-//                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-//                        if error != nil{
-//                            print(error!)
-//                            return
-//                        }
-//                        DispatchQueue.main.async {
-//                            cellImg.image = UIImage(data: data!)
-//                        }
-//                    }).resume()
-//
-//                }
-//            }){
-//                (error) in
-//                print(error.localizedDescription)
-//                return
-//            }
-        
-            
-//
             cell.addSubview(cellImg)
             cell.addSubview(cellLbl)
           
@@ -173,8 +137,6 @@ class SidebarView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     
     func setupViews() {
-        
-        
         
         self.addSubview(myTableView)
         myTableView.topAnchor.constraint(equalTo: topAnchor).isActive=true

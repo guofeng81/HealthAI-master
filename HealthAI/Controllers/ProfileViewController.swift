@@ -13,7 +13,6 @@ import FirebaseStorage
 
 class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
-    
     @IBOutlet var bioTableView: UITableView!
     @IBOutlet var usernameLabel: UILabel!
     
@@ -21,7 +20,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var storageRef : StorageReference!
     var LoginUser  = Auth.auth().currentUser!
     var imagePicker = UIImagePickerController()
-    
     
     let bioList = ["Height","Weight","Glucose","Blood Pressure"]
     
@@ -37,6 +35,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bioCell", for: indexPath) as! BioCell
+        
+        loadBioVlaues()
         
         cell.textLabel?.text = bioList[indexPath.row]
         
@@ -98,7 +98,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
     }
     
-    
     //MARK - Set up the Profile UIViewController
     
     @IBOutlet var profileImageView: UIImageView!
@@ -112,11 +111,32 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         DatabaseHelper.loadDatabaseImage(databaseRef: databaseRef,user: LoginUser, imageView: profileImageView)
         DatabaseHelper.setDatabaseUsername(databaseRef: databaseRef, user: LoginUser, label: usernameLabel)
         
-        if values[0].count != 0 || values[1].count != 0 || values[2].count != 0 || values[3].count != 0 {
-            values = DatabaseHelper.loadBioVlaues(databaseRef: databaseRef, user: LoginUser)
-        }
+        
+       
+            
+        
+        print(values)
         
     }
+    
+    
+    func loadBioVlaues(){
+        
+        databaseRef.child("profile").child(LoginUser.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+            
+            let dictionary = snapshop.value as? NSDictionary
+            
+            self.values[0] = dictionary!["height"] as! String
+            self.values[1] = dictionary!["weight"] as! String
+            self.values[2] = dictionary!["glucose"] as! String
+            self.values[3] = dictionary!["bloodpressure"] as! String
+            
+        })
+        
+        
+    }
+    
+    
     
     
     func getReferences(){
@@ -190,10 +210,18 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         //TODO - push all data which save in the screen to the database
         
-        DatabaseHelper.setBioValues(databaseRef: databaseRef, user: LoginUser, values: values)
-        
+        setBioValues(values: values)
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    func setBioValues(values: [String]){
+
+        databaseRef.child("profile").child(LoginUser.uid).updateChildValues(["height":values[0]])
+        databaseRef.child("profile").child(LoginUser.uid).updateChildValues(["weight": values[1]])
+        databaseRef.child("profile").child(LoginUser.uid).updateChildValues(["glucose": values[2]])
+        databaseRef.child("profile").child(LoginUser.uid).updateChildValues(["bloodpressure": values[3]])
+
     }
     
     
@@ -235,7 +263,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
                             if let downloadUrl = url {
                                 
                                 print(downloadUrl)
-                                self.databaseRef.child("profile").child(self.LoginUser.uid).child("photo").setValue(downloadUrl.absoluteString)
+                                self.databaseRef.child("profile").child(self.LoginUser.uid).updateChildValues(["photo":downloadUrl.absoluteString])
                                 
                             }else {
                                 print("error downloading the url!")
