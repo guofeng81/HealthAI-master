@@ -17,6 +17,7 @@
 		B30E61C421756EE5004135B9 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E61C321756EE5004135B9 /* AuthServices.swift */; };
 		B30E61C82176C373004135B9 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E61C72176C373004135B9 /* WeatherDataModel.swift */; };
 		B30E75C1217E77E100231ED3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E75C0217E77E100231ED3 /* CardView.swift */; };
+		B30E77922189236B0074D71E /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E77912189236B0074D71E /* WorkoutViewController.swift */; };
 		B310142B2186A5E900324155 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310142A2186A5E900324155 /* ProfileTableViewCell.swift */; };
 		B310142D2186A5FC00324155 /* BioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B310142C2186A5FC00324155 /* BioCell.swift */; };
 		B31051752187B6D100D9932F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31051742187B6D100D9932F /* ProfileViewController.swift */; };
@@ -42,6 +43,7 @@
 		B30E61C321756EE5004135B9 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		B30E61C72176C373004135B9 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 		B30E75C0217E77E100231ED3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B30E77912189236B0074D71E /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		B310142A2186A5E900324155 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		B310142C2186A5FC00324155 /* BioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioCell.swift; sourceTree = "<group>"; };
 		B31051742187B6D100D9932F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -120,10 +122,8 @@
 		B30E61C221756C66004135B9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B30E61BE21754163004135B9 /* HealthMainViewController.swift */,
-				6455C8E521642E36009F4D33 /* ViewController.swift */,
-				B3428D1321753957000BEFAE /* RegisterViewController.swift */,
-				B31051742187B6D100D9932F /* ProfileViewController.swift */,
+				B30E7790218923470074D71E /* MainPageController */,
+				B30E77912189236B0074D71E /* WorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -162,6 +162,17 @@
 				B310142C2186A5FC00324155 /* BioCell.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B30E7790218923470074D71E /* MainPageController */ = {
+			isa = PBXGroup;
+			children = (
+				B30E61BE21754163004135B9 /* HealthMainViewController.swift */,
+				6455C8E521642E36009F4D33 /* ViewController.swift */,
+				B3428D1321753957000BEFAE /* RegisterViewController.swift */,
+				B31051742187B6D100D9932F /* ProfileViewController.swift */,
+			);
+			path = MainPageController;
 			sourceTree = "<group>";
 		};
 		B357476721811ED500A141DC /* Animations */ = {
@@ -310,6 +321,7 @@
 			files = (
 				B357476921811EEC00A141DC /* SlideAnimation.swift in Sources */,
 				B30E75C1217E77E100231ED3 /* CardView.swift in Sources */,
+				B30E77922189236B0074D71E /* WorkoutViewController.swift in Sources */,
 				B311DCEB217F808500F8C8E3 /* SidebarView.swift in Sources */,
 				B35747E92182A90000A141DC /* DatabaseHelper.swift in Sources */,
 				6455C8E621642E36009F4D33 /* ViewController.swift in Sources */,

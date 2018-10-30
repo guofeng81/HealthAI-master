@@ -20,6 +20,7 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
 //    @IBOutlet weak var temperatureLabel: UILabel!
     
     //@IBOutlet weak var backgroundImageView: UIImageView!
+    
    
     @IBOutlet var backgroundImageView: UIImageView!
     
@@ -39,6 +40,10 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     
     //@IBOutlet weak var conditionLabel: UILabel!
     
+    
+    @IBOutlet var workoutView: UIView!
+    
+    
     let WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather"
     let APP_ID = "47aa6d0303fe5a8186915aa57b079446"
     
@@ -48,23 +53,53 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
     var sidebarView: SidebarView!
     var blackScreen : UIView!
     
+    @IBOutlet var diabeteView: UIView!
+    
+    @IBOutlet var counterView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         databaseRef = Database.database().reference()
         
 //MARK - Add CardView Gesture
-        //let TapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-        //self.workoutCardView.addGestureRecognizer(TapGesture)
         
+        setupTapView()
         setupMenu()
         loadLocationManager()
        
     }
-
-
-    @objc func handleTap(sender:UITapGestureRecognizer){
+    
+    func setupTapView(){
+        let workoutGesture = UITapGestureRecognizer(target: self, action: #selector(workouthandleTap(sender:)))
+        self.workoutView.addGestureRecognizer(workoutGesture)
+        
+//        let diabeteGesture = UITapGestureRecognizer(target: self, action: #selector(diabetehandleTap(sender:)))
+//        self.workoutView.addGestureRecognizer(diabeteGesture)
+//
+//        let caloriesCounterGesture = UITapGestureRecognizer(target: self, action: #selector(counterhandleTap(sender:)))
+//        self.workoutView.addGestureRecognizer(caloriesCounterGesture)
+//
+//        let BMIGesture = UITapGestureRecognizer(target: self, action: #selector(BMIhandleTap(sender:)))
+//        self.workoutView.addGestureRecognizer(BMIGesture)
+        
+    }
+    
+    @objc func workouthandleTap(sender:UITapGestureRecognizer){
         performSegue(withIdentifier: "goToWorkout", sender: self)
     }
+
+//    @objc func diabetehandleTap(sender:UITapGestureRecognizer){
+//        performSegue(withIdentifier: "goToDiabete", sender: self)
+//    }
+//
+//    @objc func counterhandleTap(sender:UITapGestureRecognizer){
+//        performSegue(withIdentifier: "goToCounter", sender: self)
+//    }
+//    
+//    @objc func BMIhandleTap(sender:UITapGestureRecognizer){
+//        performSegue(withIdentifier: "goToBMI", sender: self)
+//    }
     
     
     @IBAction func cameraPressed(_ sender: UIButton) {
@@ -140,10 +175,10 @@ class HealthMainViewController: UIViewController, CLLocationManagerDelegate, UIN
         weatherDataModel.weatherCondition = json["weather"][0]["description"].stringValue
         
         updateUIWeatherData(weatherDataModel: weatherDataModel)
-        print(weatherDataModel.temperature)
-        print(weatherDataModel.city)
-        print(weatherDataModel.weatherIconName)
-        print(weatherDataModel.weatherCondition)
+//        print(weatherDataModel.temperature)
+//        print(weatherDataModel.city)
+//        print(weatherDataModel.weatherIconName)
+//        print(weatherDataModel.weatherCondition)
      
     }
     

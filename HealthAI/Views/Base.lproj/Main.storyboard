@@ -354,7 +354,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dTQ-PE-1Bc">
-                                                            <rect key="frame" x="233" y="15" width="64" height="40"/>
+                                                            <rect key="frame" x="288" y="15" width="64" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dew-JM-PSG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="35.5" height="40"/>
@@ -411,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAE-Qz-OJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="624.73763118440786"/>
+            <point key="canvasLocation" x="1854" y="750"/>
         </scene>
         <!--Helth AI-->
         <scene sceneID="tne-QT-ifu">
@@ -671,14 +671,78 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="HJF-r1-6Y5" id="DM9-8G-OVS"/>
                         <outlet property="cityLabel" destination="dUj-2c-pXA" id="xdJ-TC-9GB"/>
+                        <outlet property="counterView" destination="hWC-YI-f8C" id="FLq-ft-IbT"/>
+                        <outlet property="diabeteView" destination="xK6-XQ-CUv" id="b3W-HC-QPG"/>
                         <outlet property="temperatureLabel" destination="a96-yh-mHW" id="fsU-ms-5mr"/>
                         <outlet property="weatherConditionLbl" destination="cd0-6R-PC1" id="r8G-Uz-VZb"/>
                         <outlet property="weatherImage" destination="s7U-kM-FW4" id="L7m-ei-9Gy"/>
+                        <outlet property="workoutView" destination="Uzd-ZV-Zcq" id="ngC-Od-iOx"/>
+                        <segue destination="nqa-Mj-zHF" kind="show" identifier="goToWorkout" id="vU5-n5-No0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2789.8550724637685" y="-383.1521739130435"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mgq-yZ-O7c">
+            <objects>
+                <viewController id="K90-IB-dAP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FxV-Sm-6dG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WDx-BX-W5t"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rit-Vq-INs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3127" y="-1114"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zhK-dD-lUt">
+            <objects>
+                <viewController id="DQB-Zw-dRE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0zq-v3-EmO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="PEa-nM-iyq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9te-Pp-wnu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4108" y="-620"/>
+        </scene>
+        <!--Workout View Controller-->
+        <scene sceneID="ARd-lo-kmE">
+            <objects>
+                <viewController id="nqa-Mj-zHF" customClass="WorkoutViewController" customModule="HealthAI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bT9-FK-jaL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AZ4-VH-3ay"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWI-O1-bgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2953" y="418"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Crr-jn-NYx">
+            <objects>
+                <viewController id="cfQ-WP-CDJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o9w-5t-jTD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tkU-20-Zu6"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8bS-cx-AHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4081" y="49"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yd5-OL-RSN">
@@ -696,7 +760,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBL-bt-BhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="-99"/>
+            <point key="canvasLocation" x="1855" y="-85"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9yE-yU-wuy">
