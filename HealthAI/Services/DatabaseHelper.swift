@@ -80,6 +80,7 @@ class DatabaseHelper {
     
     static func loadBioVlaues(databaseRef: DatabaseReference!, user: User) -> [String]{
         
+        //Setting Up
         var values = ["","","",""]
         
         databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
