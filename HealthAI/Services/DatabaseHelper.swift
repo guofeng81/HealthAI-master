@@ -57,4 +57,46 @@ class DatabaseHelper {
         })
     }
     
+    static func setBioValues(databaseRef: DatabaseReference!, user: User, values: [String]){
+        
+        //let values = ["height":"","weight":"","glucose": "","bloodpressure":""]
+        
+//        databaseRef.child("profile").child(user.uid).setValue(values) { (error, ref) in
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }else{
+//                    print("Profile successfully created!")
+//                }
+//            }
+        
+        databaseRef.child("profile").child(user.uid).setValue(["height": values[0]])
+        databaseRef.child("profile").child(user.uid).setValue(["weight": values[1]])
+        databaseRef.child("profile").child(user.uid).setValue(["glucose": values[2]])
+        databaseRef.child("profile").child(user.uid).setValue(["bloodpressue": values[3]])
+        
+    
+    }
+    
+    static func loadBioVlaues(databaseRef: DatabaseReference!, user: User) -> [String]{
+        
+        var values = ["","","",""]
+        
+        databaseRef.child("profile").child(user.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+            
+            let dictionary = snapshop.value as? NSDictionary
+            
+            values[0] = dictionary!["height"] as! String
+            values[1] = dictionary!["weight"] as! String
+            values[2] = dictionary!["glucose"] as! String
+            values[3] = dictionary!["bloodpressure"] as! String
+            
+        })
+        
+        return values
+        
+    }
+    
+    
+    
 }

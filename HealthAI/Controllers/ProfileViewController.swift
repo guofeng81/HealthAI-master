@@ -14,6 +14,7 @@ import FirebaseStorage
 class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     
+    @IBOutlet var bioTableView: UITableView!
     @IBOutlet var usernameLabel: UILabel!
     
     var databaseRef : DatabaseReference!
@@ -26,7 +27,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     let unitList = ["cm","lb","mm","mm"]
     
-    let values = ["150","150","150","150"]
+    var values = ["150","150","150","150"]
     
     //MARK - Table View Set up
     
@@ -44,6 +45,57 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         cell.valueLabel.text = values[indexPath.row]
         
         return cell
+    }
+    
+    //MARK - Build the edit method for the UITableView
+     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let value = values[indexPath.row]
+        
+        let editAction = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
+            self.updateAction(value: value, indePath: indexPath)
+        }
+        
+        editAction.backgroundColor = UIColor.blue
+        return [editAction]
+        
+    }
+    
+    private func updateAction(value: String, indePath: IndexPath){
+        
+        let alert = UIAlertController(title: "Update", message: "Update your Bio", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
+            guard let textField = alert.textFields?.first else{
+                return
+            }
+            if let textToEdit = textField.text {
+                if textToEdit.count == 0 {
+                    return
+                }else{
+                    //let the label to be the textToEdit
+                    self.values[indePath.row] = textToEdit
+                    self.bioTableView.reloadRows(at: [indePath], with: .automatic)
+                }
+                
+            }else{
+                return
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addTextField()
+        guard let textField = alert.textFields?.first else{
+            return
+        }
+        
+        textField.placeholder = "Update your Bio Info"
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert,animated: true)
+        
     }
     
     
@@ -77,7 +129,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     @IBAction func editProfileImage(_ sender: UIButton) {
         
-        let myActionSheet = UIAlertController(title: "Profile Picture", message: "Select", preferredStyle: .actionSheet)
+        let myActionSheet = UIAlertController(title: "Profile Picture", message: "Select the photo you like.", preferredStyle: .actionSheet)
         
         let viewPicture = UIAlertAction(title: "View Picture", style: .default) { (action) in
             
@@ -132,7 +184,9 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         
+        //TODO - push all data which save in the screen to the database
         
+     DatabaseHelper.setBioValues(databaseRef: databaseRef, user: LoginUser, values: values)
         
         self.dismiss(animated: true, completion: nil)
         
@@ -142,6 +196,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     @objc func dismissFullScreenImage(sender : UITapGestureRecognizer){
         sender.view?.removeFromSuperview()
     }
+    
     
     //MARK -  Pick the image from the photo library
     
@@ -155,7 +210,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         savePictureToStorage(imageView: profileImageView)
         
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
         
         
         self.dismiss(animated: true, completion: nil)
