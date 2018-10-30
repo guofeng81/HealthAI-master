@@ -44,14 +44,35 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         // cell.bioLabel.text = bioList[indexPath.row]
         cell.unitLabel.text = unitList[indexPath.row]
         
-        print("Values in the table view")
-        
+        print("Values in the table view \(bio[indexPath.row])")
         print(loadBioValues(value: bio[indexPath.row]))
         
         cell.valueLabel.text = loadBioValues(value: bio[indexPath.row])
         
+        bioTableView.reloadData()
+        
         return cell
     }
+    
+    func loadBioValues(value:String)->String{
+        var newValue = ""
+        
+        
+        
+            databaseRef.child("profile").child(LoginUser.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
+                let dictionary = snapshop.value as? NSDictionary
+                
+                newValue = dictionary!["height"] as! String
+                print("1. First Value \(newValue)")
+            })
+            
+    
+       
+        print("2. First Value \(newValue)")
+        
+        return newValue
+    }
+    
     
     //MARK - Build the edit method for the UITableView
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -128,20 +149,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     
-    func loadBioValues(value:String)->String{
-        
-        var newValue = ""
-        
-        databaseRef.child("profile").child(LoginUser.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
-            
-            let dictionary = snapshop.value as? NSDictionary
-             newValue = dictionary![value] as! String
-            //print("First Value \(newValue)")
-        })
-        
-        return newValue
-    }
-    
+   
     
 
     func getReferences(){
