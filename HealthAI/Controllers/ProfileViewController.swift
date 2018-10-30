@@ -11,6 +11,8 @@ import FirebaseDatabase
 import Firebase
 import FirebaseStorage
 
+
+
 class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     @IBOutlet var bioTableView: UITableView!
@@ -27,7 +29,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     let bio = ["height","weight","glucose","bloodpressure"]
     
-    var values = ["","","",""]
+    var numberOfvalues = ["","","",""]
     
     
     //MARK - Table View Set up
@@ -45,40 +47,52 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         cell.unitLabel.text = unitList[indexPath.row]
         
         print("Values in the table view \(bio[indexPath.row])")
-        print(loadBioValues(value: bio[indexPath.row]))
         
-        cell.valueLabel.text = loadBioValues(value: bio[indexPath.row])
+        loadBioValues { (values) in
+            
+            self.numberOfvalues = values
+            
+            cell.valueLabel.text = self.numberOfvalues[indexPath.row]
         
-        //
-        //bioTableView.reloadData()
+            }
         
-        return cell
-    }
+        
+           return cell
+        
+        }
     
-    func loadBioValues(value:String)->String{
-        var newValue = ""
         
+    
+    typealias CompletionHandler = (_ newValue:[String]) -> Void
+    
+    func loadBioValues(completionHandler:@escaping CompletionHandler){
         
+        var newValues = [String]()
         
             databaseRef.child("profile").child(LoginUser.uid).observeSingleEvent(of: .value, with:{ (snapshop) in
                 let dictionary = snapshop.value as? NSDictionary
                 
-                newValue = dictionary!["height"] as! String
-                print("1. First Value \(newValue)")
+                 let value = dictionary!["height"] as! String
+                 let value1 = dictionary!["weight"] as! String
+                let value2 = dictionary!["glucose"] as! String
+                let value3 = dictionary!["bloodpressure"] as! String
+                newValues.append(value)
+                newValues.append(value1)
+                newValues.append(value2)
+                newValues.append(value3)
+                
+                print(newValues)
+                completionHandler(newValues)
+               
             })
-            
-    
-       
-        print("2. First Value \(newValue)")
         
-        return newValue
     }
     
     
     //MARK - Build the edit method for the UITableView
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let value = values[indexPath.row]
+        let value = numberOfvalues[indexPath.row]
         
         let editAction = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
             self.updateAction(value: value, indePath: indexPath)
@@ -102,7 +116,9 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
                     return
                 }else{
                     //let the label to be the textToEdit
-                    self.values[indePath.row] = textToEdit
+                    self.numberOfvalues[indePath.row] = textToEdit
+                    print(self.numberOfvalues)
+                    self.setBioValues(values: self.numberOfvalues)
                     self.bioTableView.reloadRows(at: [indePath], with: .automatic)
                 }
                 
@@ -143,9 +159,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
        //loadBioVlaues()
         
        
-            
-        
-        print(values)
+        //print(values)
         
     }
     
@@ -224,7 +238,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         //TODO - push all data which save in the screen to the database
         
-        setBioValues(values: values)
+        setBioValues(values: numberOfvalues)
         self.dismiss(animated: true, completion: nil)
         
     }
