@@ -287,13 +287,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zss-kC-88f">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRh-dA-A5A">
+                                    <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRh-dA-A5A">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0HA-0b-58q">
                                                 <rect key="frame" x="235" y="95" width="30" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Edit"/>
+                                                <state key="normal" title="Edit">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="editProfileImage:" destination="AdT-ye-dLB" eventType="touchUpInside" id="JOw-LP-qTl"/>
                                                 </connections>
@@ -311,6 +313,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baf-HO-7xL">
                                                         <rect key="frame" x="26" y="110" width="48" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -318,14 +321,14 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Koj-1H-Zly">
                                                 <rect key="frame" x="329" y="8" width="38" height="30"/>
                                                 <state key="normal" title="Save ">
-                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="saveProfileBtn:" destination="AdT-ye-dLB" eventType="touchUpInside" id="oVA-1R-Upe"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="0.8318707191780822" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="WEA-8z-20n" firstAttribute="top" secondItem="RRh-dA-A5A" secondAttribute="top" constant="15" id="206-eb-Okv"/>
                                             <constraint firstAttribute="trailing" secondItem="Koj-1H-Zly" secondAttribute="trailing" constant="8" id="5X5-Qa-nbn"/>
@@ -697,7 +700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rit-Vq-INs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3127" y="-1114"/>
+            <point key="canvasLocation" x="2790" y="-1301"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zhK-dD-lUt">
@@ -712,7 +715,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9te-Pp-wnu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4108" y="-620"/>
+            <point key="canvasLocation" x="3574" y="-615"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="ARd-lo-kmE">
@@ -721,13 +724,33 @@
                     <view key="view" contentMode="scaleToFill" id="bT9-FK-jaL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="t4S-RB-Kvb">
+                                <rect key="frame" x="67" y="127" width="240" height="464"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqq-4R-k03">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nxE-an-wbc">
+                                        <rect key="frame" x="0.0" y="168" width="240" height="128"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2X7-Ze-Nal">
+                                        <rect key="frame" x="0.0" y="336" width="240" height="128"/>
+                                        <color key="backgroundColor" red="0.097387246787548065" green="0.52260202169418335" blue="0.56187105178833008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="AZ4-VH-3ay"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWI-O1-bgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2953" y="418"/>
+            <point key="canvasLocation" x="2705" y="930"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Crr-jn-NYx">
@@ -742,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bS-cx-AHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4081" y="49"/>
+            <point key="canvasLocation" x="3574" y="122"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yd5-OL-RSN">
